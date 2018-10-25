@@ -1,0 +1,58 @@
+<div class="container">
+  <!--<m8io-sub-nav *ngIf="user && subNav" [index]="index"></m8io-sub-nav>-->
+</div>
+<!--<m8io-entity-filter [count]="pager.items.length" (textFilter)="setSearchString($event)" [of]="view"></m8io-entity-filter>-->
+
+
+<ng-template #deleteButtonPopover>
+  Only API owners can delete an API.
+</ng-template>
+
+<ng-template #filteringEmpty>
+  <h3 class="empty-message">
+    <span>
+      <span *ngIf="filtering === 'search'">Your search for "{{ getSearchFromFilter }}" was not fruitful</span>
+      <span *ngIf="filtering === 'favorite'">Your search was not fruitful</span>
+      <br>
+      <small>We show your APIs by default. Please change <br> the keyword filter to try again.</small>
+    </span>
+  </h3>
+</ng-template>
+
+<ng-template #loading>
+  <div class="loader"></div>
+</ng-template>
+
+<ng-template #noListData>
+  <p class="text-center btn-block lead p-5 bg-light" id="empty-results">No Data.</p>
+</ng-template>
+
+<div class="container" *ngIf="ready; else loading">
+  <h1 class="font-weight-light">{{entitiesName}}</h1>
+  <mahrio-asset-inventory-all *ngIf="pager.items.length; else noListData"
+                              [entities]="pager.page" [user]="user"></mahrio-asset-inventory-all>
+
+  <div class="footer mt-5 mb-5" *ngIf="pager.pages > 1">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination pagination-md justify-content-center">
+        <li class="page-item p-1" [ngClass]="{'disabled': pager.isFirst}">
+          <button class="btn btn-link page-link" (click)="first()">First</button>
+        </li>
+        <li class="page-item p-1" [ngClass]="{'disabled': !pager.hasPrev}">
+          <button class="btn btn-link page-link" (click)="prev()">Previous</button>
+        </li>
+        <li class="page-item p-1" [ngClass]="{'disabled': pager.isPage(index - 1)}"
+            *ngFor="let index of pager.pageNumbers">
+          <button class="btn btn-link page-link" (click)="turnPage(index - 1)">{{index}}</button>
+        </li>
+        <li class="page-item p-1" [ngClass]="{'disabled': !pager.hasNext}">
+          <button class="btn btn-link page-link" (click)="next()">Next</button>
+        </li>
+        <li class="page-item p-1" [ngClass]="{'disabled': pager.isLast}">
+          <button class="btn btn-link page-link" (click)="last()">Last</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+

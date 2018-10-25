@@ -1,0 +1,66 @@
+dxin-chip {
+    display: inline-block;
+    font-size: 100%;
+    font-weight: 700;
+    line-height: 1.55;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+
+    margin: 0 3px 3px 0;
+    padding: 1px 6px;
+
+    position: relative;
+
+    &.canDelete {
+        padding-right: 20px!important;
+    }
+
+    &.primary {
+        background-color: #0275d8;
+    }
+    &.default {
+        background-color: #818a91;
+    }
+    &.success {
+        background-color: #5cb85c;
+    }
+    &.info {
+        background-color: #5bc0de;
+    }
+    &.warning {
+        background-color: #f0ad4e;
+    }
+    &.danger {
+        background-color: #d9534f;
+    }
+
+    .remove {
+        position: absolute;
+        top: 2px;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -ms-flex-align: center;
+        align-items: center;
+        box-sizing: border-box;
+        width: 17px;
+        border-radius: 0 2px 2px 0;
+        color: inherit;
+        vertical-align: middle;
+        text-align: center;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 700;
+
+        &:hover {
+            background: rgba(0,0,0,.05);
+        }
+    }
+}

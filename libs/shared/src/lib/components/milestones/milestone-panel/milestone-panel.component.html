@@ -1,0 +1,14 @@
+<div>
+    <h5 class="mt-3 mb-4">Path to Production</h5>
+
+    <div class="milestone-section" *ngFor="let section of sections">
+        <div class="milestone-header">
+            <m8io-milestone-list [section]="section" (onToggle)="sectionToggled(section.name)"></m8io-milestone-list>
+        </div>
+        <div class="milestone-content" *ngIf="section.isExpanded">
+            <m8io-milestone [milestone]="milestone" *ngFor="let milestone of section.milestones"
+                (onSelect)="selectMilestone(milestone.name)"></m8io-milestone>
+        </div>
+    </div>
+
+</div>

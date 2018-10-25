@@ -16,6 +16,9 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@mahrio/shared": [
+        "libs/shared/src/index.ts"
+      ]
     }
   },
   "exclude": [

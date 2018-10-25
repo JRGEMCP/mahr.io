@@ -7,5 +7,21 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "consumer": {
+      "tags": []
+    },
+    "consumer-e2e": {
+      "tags": []
+    },
+    "producer": {
+      "tags": []
+    },
+    "producer-e2e": {
+      "tags": []
+    },
+    "shared": {
+      "tags": []
+    }
+  }
 }

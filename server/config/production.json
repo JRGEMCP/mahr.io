@@ -1,0 +1,20 @@
+{
+  "NODE_URL": "0.0.0.0",
+  "PORT": "8081",
+  "NODE_PUBLIC_PATH": "/public",
+  "CONTENT_TYPE": "tutorial",
+  "REGRESSION_SUPPORT": false,
+  "MONGODB_URI": "",
+  "USER_INTERFACES": [
+    {
+      "name": "consumer",
+      "route": ""
+    }
+  ],
+  "WEB_DOMAIN": "https://mahr.io/",
+  "STRIPE_PRIVATE": "sk_test_",
+  "STRIPE_PUBLIC": "pk_test_",
+  "MAILGUN_API_KEY": "key-",
+  "MAILGUN_FROM": "no-reply@mahr.io",
+  "MAILGUN_DOMAIN": "mg.mahr.io"
+}

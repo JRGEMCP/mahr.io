@@ -1,0 +1,31 @@
+<div *ngFor="let entity of entities; let i = index" class="api d-flex border-bottom pb-3 pt-3">
+  <div class="metadata mr-auto">
+    <!--<div class="favorite float-left mt-2" *ngIf="user">-->
+    <!--<i class="fa fa-star-o"></i>-->
+    <!--</div>-->
+    <div class="favorite mt-2 mr-2" *ngIf="entity.thumb">
+      <img [src]="entity.thumb" />
+    </div>
+    <div class="main" [ngClass]="{'active': !entity.thumb}">
+      <div class="top">
+        <a class="name" (click)="entity.cacheEntity = entities[i];"
+           [routerLink]="['/', entityName.toLowerCase(), entity.link]">
+          {{ entity.title }}
+        </a>
+      </div>
+      <div class="bottom">
+        <span>{{entity.deck}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions mr-1">
+    <div *ngIf="entity?.tags && entity.tags.length" class="text-right">
+      <span *ngFor="let tag of entity.tags" class="badge badge-secondary badge-pill m-1">{{tag}}</span>
+    </div>
+  </div>
+
+  <div class="delete-button ml-1 text-right" style="min-width: 85px;">
+    {{entity.created | date:'MMM yyyy'}}
+  </div>
+</div>

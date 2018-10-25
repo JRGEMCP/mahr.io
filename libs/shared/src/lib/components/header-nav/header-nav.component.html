@@ -1,0 +1,39 @@
+<header>
+  <nav class="navbar navbar-expand-md fixed-top bg-white">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="fa fa-bars" (click)="isCollapsed = !isCollapsed"></span>
+    </button>
+
+    <a class="navbar-brand" [routerLink]="['/']">mahr.io Playbook</a>
+
+    <div class="navbar-collapse bg-white" id="navbarCollapse" [hidden]="isCollapsed">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/', eName.toLowerCase()]">{{eName}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/courses">Courses</a>
+        </li>
+      </ul>
+      <div *ngIf="userReady">
+        <div *ngIf="!user; else userSession">
+          <a class="btn btn-link" routerLink="/session/new">Login</a>
+          <a class="btn btn-success ml-2" routerLink="/user/register">Sign Up</a>
+        </div>
+        <ng-template #userSession>
+          <div class="btn-group">
+            <a *ngIf="user.confirmedToken" [routerLink]="['/']"  [queryParams]="{confirm: user.confirmedToken}" class="btn btn-link" id="shortcutConfirm">C</a>
+            <button type="button" id="userAccount" class="btn btn-link dropdown-toggle" (click)="show = !show">
+              {{user.email}}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" [collapse]="!show">
+              <button class="dropdown-item" type="button" routerLink="/dashboard" (click)="show = !show">Dashboard</button>
+              <button class="dropdown-item" type="button" routerLink="/dashboard/profile" (click)="show = !show">Profile</button>
+              <button class="dropdown-item" type="button" (click)="logout()">Logout</button>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </nav>
+</header>

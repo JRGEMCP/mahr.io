@@ -1,0 +1,27 @@
+<div class="chips-input items has-items" [ngClass]="{disabled: !canEdit}">
+  <dxin-chip
+    [text]="chip"
+    [index]="index"
+    [canDelete]="canEdit"
+    [ngClass]="{'canDelete': canEdit }"
+    [selected]="selectedChip === index"
+    (chipRemoved)="_removeChip($event)"
+    *ngFor="let chip of chipsList; let index = index">
+  </dxin-chip>
+  <form [formGroup]="chipInputForm" class="chips-form">
+    <input
+      class="chips-field"
+      type="text"
+      formControlName="chipsInputField"
+      id="chipsInputField"
+      name="chipsInputField"
+      [placeholder]="placeholder"
+      (paste)="onInputPaste($event)"
+      (keydown)="onKeydown($event)"
+      (blur)="onInputBlurred($event)"
+      (focus)="onInputFocused($event)">
+
+    <div *ngIf="showAutocomplete()" class="chips-autocomplete-container">
+    </div>
+  </form>
+</div>

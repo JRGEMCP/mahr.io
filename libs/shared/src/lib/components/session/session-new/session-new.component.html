@@ -1,0 +1,33 @@
+<div>
+  <m8io-alert-banner *ngIf="errors.length"
+    [errors]="errors"
+  ></m8io-alert-banner>
+
+  <h3 class="font-weight-light">Login</h3>
+  <form [formGroup]="user.form">
+    <div class="form-group">
+      <label for="loginInputEmail1">Email address</label>
+      <input formControlName="email" type="text" class="form-control" id="loginInputEmail1" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="loginInputPassword1">Password</label>
+      <input formControlName="password" type="password" class="form-control" id="loginInputPassword1" placeholder="Password">
+      <small class="float-right"><a role="button" routerLink="/account/recover">Forgot Password?</a></small>
+    </div>
+  </form>
+
+  <div class="input-group" *ngIf="course.title">
+    <small>Course: {{course.title}}</small>
+  </div>
+
+  <div class="form-group text-center mt-5">
+    <button (click)="login()" id="loginButton"
+            [disabled]="!user.payload.password || !user.validEmail"
+            role="button" class="btn btn-primary">
+      Login
+    </button>
+  </div>
+  <div class="text-center">
+    <p><a role="button" routerLink="/user/register" [queryParams]="{course: course?._id}">Create an Account</a></p>
+  </div>
+</div>

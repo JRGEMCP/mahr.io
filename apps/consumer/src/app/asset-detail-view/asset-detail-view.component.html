@@ -1,0 +1,16 @@
+<article>
+  <h1 class="text-center pb-3 mbr-fonts-style display-4">{{entity?.title}}</h1>
+  <h3 class="text-center"><span *ngIf="entity && entity?.creator?._id === user?.id"><a [routerLink]="['/tutorials/', entity._id, 'edit']"><i class="fa fa-cog"></i> Edit </a></span></h3>
+  <p class="text-center lead">{{entity?.deck}}</p>
+  <p class="text-center">{{entity?.created | date: 'mediumDate'}}</p>
+  <div *ngIf="entity?.tags && entity.tags.length" class="text-center mt-2 mb-5">
+    <span *ngFor="let tag of entity.tags" class="badge badge-primary badge-pill m-1">{{tag}}</span>
+  </div>
+
+  <div *ngIf="entity">
+    <div *ngFor="let section of entity.sections" [ngClass]="{'ql-snow': section.type == 'editor'}">
+      <b>{{section.heading}}</b><br/>
+      <markdown [data]="section.body" [ngClass]="{'ql-editor': section.type == 'editor'}"></markdown>
+    </div>
+  </div>
+</article>

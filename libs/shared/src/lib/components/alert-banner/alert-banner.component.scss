@@ -1,0 +1,29 @@
+.a-alert-error .a-alert-container {
+  background-color: #fff;
+  box-shadow: 0 0 0 4px #fcf4f4 inset;
+  padding-left: 63px;
+}
+.a-box {
+  .a-box-inner {
+    border: 1px solid #dc3545;
+    border-radius: 4px;
+    position: relative;
+    padding: 14px 18px;
+    margin: 10px 25px 10px 60px;
+
+    .a-alert-content {
+      margin-left: 26px;
+      font-size: 11pt;
+      ul {
+        list-style: none;
+        padding-left: 15px;
+      }
+    }
+    i {
+      float: left;
+      margin-right: 15px;
+      margin-top: 0;
+      font-size: 20pt;
+    }
+  }
+}

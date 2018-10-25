@@ -1,0 +1,50 @@
+<div class="p-5" *ngIf="hasPay">
+  <h4>
+    Congratulations! You have completed your purchase. Visit your
+    <a routerLink="/dashboard" (click)="close()">dashboard</a>
+    to find the course.
+  </h4>
+</div>
+
+<form [hidden]="hasPay">
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Purchase Course</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-9">
+          <b>Title</b><br/>
+          {{payment.product?.title}}<br/>
+        </div>
+        <div class="col-md-3">
+          <b>Cost</b><br/>
+          {{payment.amount ?  '$' + payment.amount : 'Free'}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <b>Description</b><br/>
+          {{payment.product?.deck}}<br/>
+        </div>
+      </div>
+
+      <div class="form-group mt-3" [hidden]="payment?.user.stripeId || !payment.amount">
+        <b>Payment Information</b><br/>
+        <div id="card-element"></div>
+      </div>
+
+      <div class="form-group text-center mt-5">
+        <button class="btn btn-success" (click)="charge()" [disabled]="!ready && payment.amount && !payment?.user.stripeId ">
+          <i class="fa fa-lock"></i>
+          {{payment.amount ?  'Pay $' + payment.amount : 'Enroll'}}
+        </button>
+
+        <br/>
+        <br/>
+        <br/>
+        <button class="btn-link btn" (click)="close()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,19 @@
+{
+  "PORT": "8085",
+  "NODE_PUBLIC_PATH": "/public",
+  "MONGODB_URI": "mongodb://127.0.0.1:27017/mahrio",
+  "CONTENT_TYPE": "tutorial",
+  "REGRESSION_SUPPORT": true,
+  "USER_INTERFACES": [
+    {
+      "name": "consumer",
+      "route": ""
+    }
+  ],
+  "WEB_DOMAIN": "http://127.0.0.1:8081/",
+  "STRIPE_PRIVATE": "sk_test_",
+  "STRIPE_PUBLIC": "pk_test_",
+  "MAILGUN_API_KEY": "key-",
+  "MAILGUN_FROM": "no-reply@mahr.io",
+  "MAILGUN_DOMAIN": "mg.mahr.io"
+}
