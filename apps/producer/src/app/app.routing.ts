@@ -19,13 +19,8 @@ const routes: Routes = [
   {path: 'dashboard/admin/:type', component: EntityListComponent, canActivate: [ ValidSessionGuard ]},  // LIST OF ALL (INSTRUCTOR ROLE)
   {path: 'dashboard/dx/:type', component: EntityListComponent, canActivate: [ ValidSessionGuard ]},    // LIST OF ALL IN USE CASE REVIEW (REVIEWER/INSTRUCTOR ROLE)
   {path: 'dashboard/courses/:type', component: CourseListComponent, canActivate: [ ValidSessionGuard ]},        // LIST OF OWNERSHIP (AUTHORIZED / SELF ROLE)
-
   {path: 'courses/new', component: CourseCreateComponent, canActivate: [ ValidSessionGuard ]},
-  // {path: 'courses/:link', component: CourseViewComponent},
-  // {path: 'courses/:link/modules', component: CourseViewComponent},
-  // {path: 'courses/:link/modules/:section', component: CourseViewComponent},
   {path: 'courses/:id/:edit', component: CourseEditComponent, canActivate: [ ValidSessionGuard ]},
-
   {path: 'dashboard', component: DashboardComponent, canActivate:[ ValidSessionGuard ]}
 ];
 

@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
             console.log('no valid confirm');
           });
         } else if ( params.course ) {
-          this.session.course = params.course;
+          this.session.course = {id: params.course};
         } else if ( params.purchase ) {
           this.session.purchase = true;
         }

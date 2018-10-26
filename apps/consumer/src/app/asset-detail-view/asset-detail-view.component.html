@@ -1,6 +1,13 @@
 <article>
   <h1 class="text-center pb-3 mbr-fonts-style display-4">{{entity?.title}}</h1>
-  <h3 class="text-center"><span *ngIf="entity && entity?.creator?._id === user?.id"><a [routerLink]="['/tutorials/', entity._id, 'edit']"><i class="fa fa-cog"></i> Edit </a></span></h3>
+  <h3 class="text-center">
+    <span *ngIf="entity && user && entity.creator?._id === user.id">
+      <a [routerLink]="['/tutorials/', entity._id, 'edit']">
+        <i class="fa fa-cog"></i>
+        Edit
+      </a>
+    </span>
+  </h3>
   <p class="text-center lead">{{entity?.deck}}</p>
   <p class="text-center">{{entity?.created | date: 'mediumDate'}}</p>
   <div *ngIf="entity?.tags && entity.tags.length" class="text-center mt-2 mb-5">

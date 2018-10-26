@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { SessionService, EntityService, CourseService } from '@mahrio/shared';
 
-@@Component({
+@Component({
   selector: 'mahrio-course-detail-view',
   templateUrl: './course-detail-view.component.html',
   styleUrls: ['./course-detail-view.component.scss']
