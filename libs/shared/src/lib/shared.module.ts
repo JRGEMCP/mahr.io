@@ -22,6 +22,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AlertBannerComponent } from './components/alert-banner/alert-banner.component';
 import { SessionComponent} from "./components/session/session.component";
 import { PaymentComponent } from './components/payment/payment.component';
+import { EntityFilterComponent} from './components/entity-filter/entity-filter.component';
 
 @NgModule({
   imports: [
@@ -47,11 +48,12 @@ import { PaymentComponent } from './components/payment/payment.component';
     FooterComponent,
     AlertBannerComponent,
     SessionComponent,
-    PaymentComponent
+    PaymentComponent,
+    EntityFilterComponent
   ],
   exports: [HeaderNavComponent, MilestoneComponent, MilestonePanelComponent,
     MilestoneListComponent, ChipsComponent, RecoverPasswordComponent,
-    RecoverPasswordUpdateComponent, SessionNewComponent, UserNewComponent,
+    RecoverPasswordUpdateComponent, SessionNewComponent, UserNewComponent, EntityFilterComponent,
     UpdatePasswordComponent, FooterComponent, AlertBannerComponent, ConfirmAccountComponent]
 })
 export class SharedModule { }

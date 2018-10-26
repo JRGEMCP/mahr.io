@@ -1,0 +1,163 @@
+<form [formGroup]="entity.form">
+
+  <h3 class="main-header">Discover</h3>
+
+  <div class="section mb-4">
+
+    <div class="section-header">
+      <span class="float-right">All Fields Required</span>
+      <h5>Tutorial Identification</h5>
+    </div>
+
+    <div class="section-header">
+        <span class="guidance">
+          In this section, you supply information that identifies and describes your tutorial.
+        </span>
+    </div>
+
+    <div class="section-content border p-4 mt-2 rounded">
+      <!-- name -->
+      <ng-template #namePopover>
+        A unique title for your Tutorial. The name should include as many identifying terms as possible...but don't overdo
+        it: It should be about the length of a book title, and should be given in <i>Title Case</i>.
+        A name such as &ldquo;Reading Sensor Pipeline&rdquo; is good; &ldquo;token-upgrade-verification&rdquo;
+        is vague and malformed. <br><br>Technically, the maximum length of a Tutorial name is 100 characters. In practice, however,
+        you should try to bring it in under 50. If that doesn't give you enough room to include all of the
+        identifying terms that you want, you can always add the abandoned terms to the Tutorial's <strong>Tags</strong> data.
+      </ng-template>
+
+
+      <div class="form-group">
+        <label class="form-style" for="title">Title</label>
+        <!--<dxin-valid-field *ngIf="api.isNameValid || api.isNameTouched"-->
+        <!--[valid]="api.isNameValid && api.editing['name'] !== 'error'"></dxin-valid-field>-->
+        <input id="title" name="title" placeholder="Title" formControlName="title" popoverTitle="Title"
+               [popover]="namePopover" placement="right" container="body" [outsideClick]="true"
+               autocomplete="off" class="form-control" (blur)="fieldBlur('title')"  />
+        <!--<small class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+        <div class="subtext">
+          <small class="error" *ngIf="entity.titleRequired">Title Required</small>
+          <!--<small class="error" *ngIf="api.nameHasSpecialCharsError">No Special Characters Allowed</small>-->
+          <small class="success" *ngIf="entity.editing['title']">{{ entity.editing['title'] }}</small>
+        </div>
+      </div>
+
+      <!-- description -->
+      <ng-template #descriptionPopover>
+        A short, dictionary-like description of the Tutorial.
+      </ng-template>
+      <div class="form-group">
+        <label class="form-style" for="description">Deck</label>
+        <!--<dxin-valid-field *ngIf="api?.isDescriptionValid || api?.isDescriptionTouched"-->
+        <!--[valid]="api.isDescriptionValid"></dxin-valid-field>-->
+        <textarea id="description" name="deck" rows="6" placeholder="Deck"
+                  formControlName="deck" (blur)="fieldBlur('deck')"
+                  popoverTitle="Deck"
+                  [popover]="descriptionPopover"
+                  placement="right"
+                  container="body"
+                  [outsideClick]="true" class="form-control"></textarea>
+        <!--<dxin-characters-count class="chars-left" min="1" max="350" [property]="api?.description" invalidsuffix="characters remaining" suffix="Maximum characters reached"></dxin-characters-count>-->
+        <div class="subtext">
+          <small class="error" *ngIf="entity.deckRequired">Deck Required</small>
+          <small class="success" *ngIf="entity.editing['deck']">{{ entity.editing['deck'] }}</small>
+        </div>
+
+      </div>
+
+      <ng-template #linkPopover>
+        A unique link coinciding with the title. For example, &ldquo; Air Sensor Data Pipeline &rdquo; => air-sensor-data-pipeline
+      </ng-template>
+      <div class="form-group">
+        <label class="form-style" for="link">URL Path</label>
+        <!--<dxin-valid-field *ngIf="api.isNameValid || api.isNameTouched"-->
+        <!--[valid]="api.isNameValid && api.editing['name'] !== 'error'"></dxin-valid-field>-->
+        <input id="link" name="link" placeholder="Link" formControlName="link" popoverTitle="Link"
+               [popover]="linkPopover" placement="right" container="body" [outsideClick]="true"
+               autocomplete="off" class="form-control" (blur)="fieldBlur('link')"/>
+        <div class="subtext">
+          <small class="error" *ngIf="entity.linkRequired">URL Path Required</small>
+          <small class="success" *ngIf="entity.editing['link']">{{ entity.editing['link'] }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section mb-4" *ngIf="!entity.isNew && false">
+    <!-- IMAGE DISABLED -->
+    <div class="section-header">
+      <h5>Image</h5>
+    </div>
+
+    <div class="section-header">
+      Add your own image to identify the course.
+    </div>
+
+    <ng-template #thumbPopover>
+      Enter a url for image.
+    </ng-template>
+    <div class="section-content border p-4 mt-2 rounded">
+
+      <div class="form-group">
+        <label class="form-style" for="img">Thumbnail Image</label>
+        <input id="img" name="thumb" placeholder="Thumbnail Image URL" formControlName="thumb" popoverTitle="Thumbnail Image"
+               [popover]="thumbPopover" placement="right" container="body" [outsideClick]="true"
+               autocomplete="off" class="form-control" (blur)="fieldBlur('thumb')"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="section mb-4" *ngIf="!entity.isNew && entity.isEssentialsValid">
+
+    <div class="section-header">
+      <h5>Featured</h5>
+    </div>
+
+    <div class="section-header">
+      Do you want to add this article to the featured queue?
+    </div>
+
+    <ng-template #tagsPopover>
+      Use this feature to feature your article on the home page. See more about how we use your data in our usage section
+      of our privacy policy.
+    </ng-template>
+    <div class="section-content border p-4 mt-2 rounded">
+      <div class="form-check">
+        <input class="form-check-input" formControlName="featured" type="checkbox" value="" id="defaultCheck1" (click)="toggleCheck()">
+        <label class="form-check-label" for="defaultCheck1">
+          {{false ? '' : ''}}Featured
+        </label>
+      </div>
+      <small class="success" *ngIf="entity.editing['featured']">{{ entity.editing['featured'] }}</small>
+    </div>
+  </div>
+
+  <div class="section" *ngIf="!entity.isNew || entity.isEssentialsValid">
+
+    <div class="section-header">
+      <h5>Tags</h5>
+    </div>
+
+    <div class="section-header">
+                  Guidance
+    </div>
+
+    <ng-template #tagsPopover>
+      Use tags to help connect and identify your tutorial amongst your peers collections.
+    </ng-template>
+    <div class="section-content border p-4 mt-2 rounded">
+      <m8io-tags formControlName="tags"
+                  (addChip)="fieldBlur('tags')" (removeChip)="fieldBlur('tags')"
+                  [canEdit]="true"
+                  name="tags" id="tags" placeholder="Add a new Tag"
+                  popoverTitle="Tags"
+                  [popover]="tagsPopover"
+                  placement="right"
+                  container="body"
+                  [outsideClick]="true"></m8io-tags>
+      <div class="subtext">
+        <small class="success" *ngIf="entity.editing['tags']">{{ entity.editing['tags'] }}</small>
+      </div>
+    </div>
+  </div>
+</form>

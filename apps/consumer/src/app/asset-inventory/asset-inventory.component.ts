@@ -13,7 +13,6 @@ export class AssetInventoryComponent implements OnInit, OnDestroy {
   public entities;
   public user;
   private _subs;
-  public subNav = false;
   public view;
   public index = -1;
   private _readyEntities;
@@ -27,8 +26,6 @@ export class AssetInventoryComponent implements OnInit, OnDestroy {
     this.entitiesName = this.entity.type[0];
     this.filtered.filters = [ new NoFilter(), new PublishedFilter() ];
 
-    this.view = this.route.snapshot.params.type;
-    this.subNav = !!this.view;
     const entities = this.entity.cachedList;
     if (entities && entities.length) {
       this.filtered.entities = entities;

@@ -5,7 +5,7 @@ import {PopoverModule} from "ngx-bootstrap";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {BrowserModule} from "@angular/platform-browser";
-import {M8ioSharedModule} from "m8io-shared";
+import {SharedModule} from "m8io-shared";
 import {RouterTestingModule} from '@angular/router/testing';
 
 describe('AppComponent', () => {
@@ -20,7 +20,7 @@ describe('AppComponent', () => {
         ReactiveFormsModule,
         HttpClientTestingModule,
         BrowserModule,
-        M8ioSharedModule,
+        SharedModule,
         RouterTestingModule
       ]
     })

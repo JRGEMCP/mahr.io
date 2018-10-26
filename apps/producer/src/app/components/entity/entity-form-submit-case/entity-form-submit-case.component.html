@@ -1,0 +1,3 @@
+<div *ngFor="let section of entity?.sections; let idx = index;" class="input-group mb-1">
+  <markdown [data]="section.body"></markdown>
+</div>

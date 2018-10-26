@@ -1,0 +1,26 @@
+<div>
+  <m8io-sub-nav></m8io-sub-nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+
+        <m8io-milestone-panel [milestoneService]="milestoneService"
+                              [state]="state"></m8io-milestone-panel>
+
+      </div>
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-9 p-5">
+
+            <m8io-course-form [entity]="entity" *ngIf="entity"></m8io-course-form>
+
+            <button class="btn btn-primary" (click)="save()" [disabled]="!entity.course.valid">
+              Create
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

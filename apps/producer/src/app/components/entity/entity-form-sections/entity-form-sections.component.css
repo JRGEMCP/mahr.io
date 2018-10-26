@@ -1,0 +1,24 @@
+.input-section {
+  height: 350px;
+}
+
+textarea.input-section {
+  border-top: none !important;
+}
+.section {
+  border-radius: 5px;
+  padding: 1em;
+  border-top: none !important;
+  position: relative;
+  border: 1px solid #dfdfdf;
+}
+.section .section-control {
+  position: absolute;
+  width: 100%;
+  margin-top: -12px;
+  text-align: center;
+  margin-left: -1em;
+}
+.to-be-deleted {
+  visibility: hidden;
+}

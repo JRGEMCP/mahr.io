@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from './app.component';
 import { NxModule } from '@nrwl/nx';
-import { SharedModule, SessionComponent } from "@mahrio/shared";
+import {SharedModule, SessionComponent, PaymentComponent} from "@mahrio/shared";
+import { ProducerModule } from "../../../producer/src/app/app.module";
 
 declare var ace: any;
 import { AceEditorModule } from 'ng2-ace-editor';
@@ -20,11 +21,16 @@ import { AssetDetailComponent } from './asset-detail/asset-detail.component';
 import * as env from '../environments/environment';
 import { AssetInventoryAllComponent } from './asset-inventory-all/asset-inventory-all.component';
 import { AssetDetailViewComponent } from './asset-detail-view/asset-detail-view.component';
+import { CourseInventoryAllComponent } from './course-inventory-all/course-inventory-all.component';
+import { CourseDetailViewComponent } from './course-detail-view/course-detail-view.component';
+import { CourseDetailEnrolledComponent } from './course-detail-enrolled/course-detail-enrolled.component';
 const dPath = env.environment.asset[0].toLowerCase();
 const routes: Routes = [
   {path: '', component: HomeComponent },
   {path: 'courses', component: CourseInventoryComponent},
   {path: 'courses/:link', component: CourseDetailComponent},
+  {path: 'courses/:link/modules', component: CourseDetailComponent},
+  {path: 'courses/:link/modules/:section', component: CourseDetailComponent},
   {path: dPath, component: AssetInventoryComponent},
   {path: dPath + '/:link', component: AssetDetailComponent},
   {path: 's/privacy', component: PrivacyComponent},
@@ -32,11 +38,10 @@ const routes: Routes = [
   {path: 'session/:any', component: SessionComponent},
   {path: 'user/:any', component: SessionComponent},
   {path: 'account/:any', component: SessionComponent},
-
 ];
 
 @NgModule({
-  declarations: [AppComponent, CourseInventoryComponent, CourseDetailComponent, HomeComponent, PrivacyComponent, TermsComponent, AssetInventoryComponent, AssetDetailComponent, AssetInventoryAllComponent, AssetDetailViewComponent],
+  declarations: [AppComponent, CourseInventoryComponent, CourseDetailComponent, HomeComponent, PrivacyComponent, TermsComponent, AssetInventoryComponent, AssetDetailComponent, AssetInventoryAllComponent, AssetDetailViewComponent, CourseInventoryAllComponent, CourseDetailViewComponent, CourseDetailEnrolledComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -52,10 +57,11 @@ const routes: Routes = [
     TabsModule.forRoot(),
     CarouselModule.forRoot(),
     TypeaheadModule.forRoot(),
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    ProducerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: []
+  entryComponents: [PaymentComponent]
 })
-export class AppModule { }
+export class ConsumerModule { }

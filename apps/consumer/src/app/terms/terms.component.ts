@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'mahrio-terms',
-  templateUrl: './terms.component.html',
-  styleUrls: ['./terms.component.css']
+  templateUrl: './terms.component.html'
 })
 export class TermsComponent implements OnInit {
 

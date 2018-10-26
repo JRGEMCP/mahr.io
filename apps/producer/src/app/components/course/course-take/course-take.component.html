@@ -1,0 +1,19 @@
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+
+        <m8io-milestone-panel [milestoneService]="milestones" (onMilestoneSelected)="handleClick($event)"
+                              [state]="section"></m8io-milestone-panel>
+
+      </div>
+      <div class="col-md-9">
+        <m8io-course-form-preview [course]="course" [disabledContent]="true" *ngIf="!section"></m8io-course-form-preview>
+
+        <div *ngIf="section">
+          <markdown [data]="sectionBody"></markdown>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

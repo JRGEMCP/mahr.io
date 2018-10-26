@@ -1,0 +1,22 @@
+<ul class="nav nav-pills" *ngIf="user">
+  <li class="nav-item" *ngIf="isInstructor">
+    <a class="nav-link" [ngClass]="{'active': index == 0}" [routerLink]="['/', 'dashboard','admin','all-'+cfg.toLowerCase()]">All Tutorials</a>
+  </li>
+  <li class="nav-item" *ngIf="isModerator">
+    <a class="nav-link" [ngClass]="{'active': index == 2}" routerLink="/dashboard/dx/review">Review</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [ngClass]="{'active': index == 1}" [routerLink]="['/','dashboard','my-'+cfg.toLowerCase()]">My {{cfg}}</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [ngClass]="{'active': index == 6}" routerLink="/dashboard/courses/mine">My Courses</a>
+  </li>
+  <li class="nav-item" *ngIf="index == 5">
+    <a class="nav-link" [ngClass]="{'active': index == 5}" routerLink="/dashboard/profile">Profile</a>
+  </li>
+</ul>
+<div class="pl-3">
+  <h2>
+    {{entity?.title}}
+  </h2>
+</div>

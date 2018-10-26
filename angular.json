@@ -145,7 +145,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/producer",
+            "outputPath": "server/public/producer/development",
             "index": "apps/producer/src/index.html",
             "main": "apps/producer/src/main.ts",
             "polyfills": "apps/producer/src/polyfills.ts",
@@ -167,6 +167,7 @@
                   "with": "apps/producer/src/environments/environment.prod.ts"
                 }
               ],
+              "outputPath": "server/public/producer/production",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,

@@ -1,0 +1,76 @@
+<article *ngIf="ready">
+  <div class="text-center">
+    <div *ngIf="!livePreview; else livePreview">
+      <h2>{{course.title}}</h2>
+      <p class="lead">
+        {{course.deck}}
+      </p>
+      <p class="text-center">{{course?.created | date: 'mediumDate'}}</p>
+      <div *ngIf="course?.tags && course.tags.length" class="text-center mt-2 mb-5">
+        <span *ngFor="let tag of course.tags" class="badge badge-primary badge-pill m-1">{{tag}}</span>
+      </div>
+    </div>
+    <ng-template #livePreview>
+      <div class="jumbotron">
+        <h1 class="display-4">{{course.title}}</h1>
+        <p class="lead">{{course.deck}}</p>
+        <hr class="my-4">
+        <a [routerLink]="['/', 'user', 'register']" [queryParams]="{course: course.id}" *ngIf="!user; else loggedIn"
+           class="btn btn-success" (click)="cacheCourse = course">
+          <i class="fa fa-shopping-cart"></i>
+          Enroll in Course for {{!course.cost ? 'FREE' : '$' + course.cost}}
+        </a>
+      </div>
+    </ng-template>
+    <ng-template #loggedIn>
+      <button class="btn btn-success" (click)="enrollInit()">
+        <i class="fa fa-shopping-cart"></i>
+        Enroll in Course for {{!course.cost ? 'FREE' : '$' + course.cost}}
+      </button>
+    </ng-template>
+  </div>
+
+  <div *ngFor="let module of course.modules; let i = index;" class="mt-5 mb-5">
+    <div>
+      <h3>Module {{i + 1}}: {{module.title}}</h3>
+      <p class="lead">{{module.deck}}</p>
+    </div>
+
+    <div *ngIf="!disabledContent">
+      <div *ngFor="let content of module.content">
+        <div *ngIf="content.type == 'sections'; else view">
+          <markdown [data]="content.data.body"></markdown>
+        </div>
+        <ng-template #view>
+          <a href="javascript:void(0)" (click)="viewEntity = content.entity; lgModal.show()">{{content.entity?.title}}</a>
+        </ng-template>
+      </div>
+    </div>
+
+  </div>
+
+</article>
+
+
+<!-- ENTITY PREVIEW MODAL -->
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-sizes-name1" class="modal-title pull-left">View</h4>
+        <button type="button" class="close pull-right" (click)="decline(lgModal)" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="lead">
+          <!--<m8io-entity-form-preview [entity]="viewEntity"></m8io-entity-form-preview>-->
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="decline(lgModal)" >Close</button>
+      </div>
+    </div>
+  </div>
+</div>

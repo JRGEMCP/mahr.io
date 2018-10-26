@@ -1,0 +1,118 @@
+<div>
+  <m8io-sub-nav [entity]="entity"></m8io-sub-nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+
+        <m8io-milestone-panel [milestoneService]="mileService" (onMilestoneSelected)="edit = mileService.milestoneSelected($event, id)"
+                              [state]="edit=='review'?'locked':entity?.state" ></m8io-milestone-panel>
+
+      </div>
+      <div class="col-md-9">
+        <input type="hidden" id="resource-id" [value]="this.id">
+        <div class="row">
+          <div class="col-md-12" *ngIf="entity">
+            <div [ngSwitch]="edit" class="row">
+
+              <div *ngSwitchCase="'edit'" class="col-9 p-5">
+                <m8io-entity-form [entity]="entity" *ngIf="entity"></m8io-entity-form>
+              </div>
+
+              <div *ngSwitchCase="'define'" class="col-12 pt-5">
+                <h3>Sections</h3>
+                <m8io-entity-form-sections [entity]="entity" (milestone)="milestone($event)"></m8io-entity-form-sections>
+              </div>
+
+              <div *ngSwitchCase="'submit-sections'" class="col-12 pt-5" style="overflow: auto">
+                <h3>Submit Sections For Review</h3>
+                <div *ngFor="let section of entity?.sections; let idx = index;" class="input-group mb-1">
+                  <markdown [data]="section.body"></markdown>
+                </div>
+                <div class="text-center">
+                  <div class="row">
+                    <div class="col-8 offset-2" *ngIf="ready">
+                      <button class="btn btn-lg btn-primary btn-block" (click)="submit('submitSections')"
+                        *ngIf="!dx">
+                        Submit Sections
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngSwitchCase="'review'" class="col-12 p-5" style="overflow: auto">
+                <m8io-entity-form-preview [entity]="entity"></m8io-entity-form-preview>
+                <div class="text-center">
+                  <div class="row">
+                    <div class="col-4 offset-2" *ngIf="ready">
+                      <button class="mt-3 mb-3 btn btn-lg btn-danger btn-block"
+                              *ngIf="dx" (click)="submit('setSections')">
+                        Reject
+                      </button>
+                    </div>
+                    <div class="col-4" *ngIf="ready">
+                      <button class="mt-3 mb-3 btn btn-lg btn-success btn-block"
+                              *ngIf="dx" (click)="submit('completeDefine')">
+                        Approve
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--<div *ngSwitchCase="'design'" class="col-12 p-5">-->
+              <!--<m8io-entity-form-design-scenario [entity]="entity" (save)="update($event)"></m8io-entity-form-design-scenario>-->
+            <!--</div>-->
+
+              <!--<div *ngSwitchCase="'submit-design'" class="col-9 p-5">-->
+                <!--{{entity.scenario}}-->
+                <!--<p [innerHtml]="entity.design"></p>-->
+                <!--<div class="text-center">-->
+                  <!--<div class="row">-->
+                    <!--<div class="col-8 offset-2">-->
+                      <!--<button class="btn btn-lg btn-primary btn-block" (click)="submit('submitDesign')"-->
+                              <!--*ngIf="!dx">-->
+                        <!--Submit Design-->
+                      <!--</button>-->
+                      <!--<button class="mt-3 mb-3 btn btn-lg btn-success btn-block"-->
+                              <!--*ngIf="dx" (click)="submit('completeDesign')">-->
+                        <!--Complete Design-->
+                      <!--</button>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+
+              <!--<div *ngSwitchCase="'code'" class="col-12 p-5">-->
+                <!--<m8io-entity-form-code [entity]="entity" (save)="update($event)"></m8io-entity-form-code>-->
+
+                <!--<div *ngIf="entity.code">-->
+                  <!--<button class="btn btn-lg btn-primary btn-block" (click)="submit('submitCode')" *ngIf="!dx">-->
+                    <!--Submit Code-->
+                  <!--</button>-->
+                <!--</div>-->
+                <!--<button class="btn btn-lg btn-success btn-block" (click)="submit('completeEngineer')" *ngIf="dx">-->
+                  <!--Approve Code-->
+                <!--</button>-->
+              <!--</div>-->
+
+              <div *ngSwitchCase="'publish'" class="col-12 p-5">
+                <m8io-entity-form-preview [entity]="entity"></m8io-entity-form-preview>
+                <div class="m-5 row">
+                  <div class="col-6 offset-3">
+                    <button class="btn btn-success btn-block" (click)="submit('completePublish')">
+                      Publish
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

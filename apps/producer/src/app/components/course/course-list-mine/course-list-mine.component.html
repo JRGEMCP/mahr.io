@@ -1,0 +1,46 @@
+<ng-template #noEntities>
+  <!--<div *ngIf="!filtering; else filteringEmpty">-->
+  <!--<div class="empty">-->
+  <p class="lead m-5 text-center">
+    This is where you'll find the DevExchange Inside APIs that you can contribute to...but it looks like you don't have any, yet.
+  </p>
+  <!--<div class="actions">-->
+  <!--<button type="button" class="progressive" [routerLink]="['/', 'apis', 'new']">Create your first API</button>-->
+  <!--</div>-->
+  <!--<p class="foot">-->
+  <!--To read about APIs and apps, browse the DevExchange INSIDE <a href="/documentation">user guides</a>.-->
+  <!--</p>-->
+  <!--</div>-->
+  <!--</div>-->
+</ng-template>
+
+<ng-container *ngIf="entities && entities.length; else noEntities">
+  <div *ngFor="let entity of entities" class="api d-flex border-bottom pb-3 pt-3">
+    <div class="metadata mr-auto">
+      <div class="favorite mt-2 mr-2" *ngIf="entity.thumb">
+        <img [src]="entity.thumb" />
+      </div>
+      <div class="main" [ngClass]="{'active': !entity.thumb}">
+        <div class="top">
+          <div ><h5>{{ entity.title }} <small>(<i>{{entity.state}}</i>)</small></h5> </div>
+        </div>
+        <div class="bottom">
+          <span>{{entity.deck}}</span>
+        </div>
+        <div *ngIf="entity?.tags && entity.tags.length">
+          <span *ngFor="let tag of entity.tags" class="badge badge-primary badge-pill m-1">{{tag}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions mr-5">
+      <a [routerLink]="['/courses/' + entity._id + '/edit']" class="d-block">Edit</a>
+    </div>
+
+
+    <div class="delete-button ml-5 mr-5">
+      <i class="fa fa-trash"></i>
+    </div>
+  </div>
+</ng-container>
+

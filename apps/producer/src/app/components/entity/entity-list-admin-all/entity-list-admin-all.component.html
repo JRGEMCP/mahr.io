@@ -1,0 +1,60 @@
+<div *ngFor="let entity of entities; let id = index" class="api d-flex border-bottom pb-3 pt-3">
+  <div class="metadata mr-auto">
+    <div class="favorite mt-2 mr-2" *ngIf="entity.thumb">
+      <img [src]="entity.thumb" />
+    </div>
+    <div class="main" [ngClass]="{'active': !entity.thumb}">
+      <div class="top">
+        <div ><h5>{{ entity.title }} <small>(<i>{{entity.state}}</i>)</small></h5> </div>
+      </div>
+      <div class="bottom">
+        <span>{{entity.deck}}</span>
+      </div>
+      <div *ngIf="entity?.tags && entity.tags.length">
+        <span *ngFor="let tag of entity.tags" class="badge badge-primary badge-pill m-1">{{tag}}</span>
+      </div>
+      <div>
+        {{entity?.creator ? 'Original Creator: ' + entity.creator.email : ''}}
+      </div>
+    </div>
+  </div>
+
+  <div class="actions mr-5">
+    <a [routerLink]="['/', link[1].toLowerCase(), entity._id,'edit']" class="d-block">Edit</a>
+    <a [routerLink]="['/', link[1].toLowerCase(), entity._id, 'dx','review']"
+       *ngIf="entity.state=='submitSections'" class="d-block">Review</a>
+  </div>
+
+  <div class="delete-button ml-5 mr-5">
+    <i class="fa fa-trash" (click)="lgModal.show(); remove( entity, id );" *ngIf="!entity.sections.length"
+    style="cursor: pointer"></i>
+    <i class="fa fa-trash" style="opacity: .4" *ngIf="entity.sections.length"></i>
+  </div>
+</div>
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Confirm Deletion</h4>
+        <button type="button" class="close pull-right" (click)="decline(lgModal)" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <h2>{{toBeDeleted.e?.title}}</h2>
+        <p class="lead">
+          {{toBeDeleted.e?.deck}}
+        </p>
+        <div *ngIf="toBeDeleted.e?.tags && toBeDeleted.e.tags.length">
+          <span *ngFor="let tag of toBeDeleted.e.tags" class="badge badge-primary badge-pill m-1">{{tag}}</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="confirm(lgModal)" >Yes</button>
+        <button type="button" class="btn btn-primary" (click)="decline(lgModal)" >No</button>
+      </div>
+    </div>
+  </div>
+</div>

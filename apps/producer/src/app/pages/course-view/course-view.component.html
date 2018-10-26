@@ -1,0 +1,16 @@
+<div *ngIf="ready">
+
+  <div *ngIf="!user || !isEnrolled; else courseTake" class="col-md-10 offset-md-1">
+    <m8io-course-form-preview [course]="course" [user]="user" livePreview="true"
+      (purchase)="purchase($event)"></m8io-course-form-preview>
+  </div>
+
+  <ng-template #courseTake>
+    <div class="text-center">
+      <a *ngIf="user.courseOwner(course)" [routerLink]="['/courses', course.id, 'edit']">
+        <i class="fa fa-cogs"></i>Edit
+      </a>
+    </div>
+    <m8io-course-take [course]="course"></m8io-course-take>
+  </ng-template>
+</div>

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'mahrio-privacy',
-  templateUrl: './privacy.component.html',
-  styleUrls: ['./privacy.component.css']
+  templateUrl: './privacy.component.html'
 })
 export class PrivacyComponent implements OnInit {
 

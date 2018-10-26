@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService, CourseFormModel, CourseService, PaymentComponent} from '@mahrio/shared';
+import { ActivatedRoute} from "@angular/router";
+import { FormBuilder} from '@angular/forms';
+import { BsModalService} from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'mahrio-course-detail',
@@ -6,10 +10,61 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./course-detail.component.scss']
 })
 export class CourseDetailComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  private link;
+  private _course;
+  private mRef;
+  public user;
+  private _ready = false;
+  constructor(private courseService: CourseService, private route: ActivatedRoute,
+              private formBuilder: FormBuilder, private session: SessionService,
+              private mSvc: BsModalService) {
+    this._course = this.courseService.cachedEntity;
+    if ( this._course ) {
+      this.setupForm( this._course );
+    }
+    this.link = this.route.snapshot.params.link;
   }
 
+  setupForm( art? ) {
+    this._course = new CourseFormModel(this.formBuilder, art );
+  }
+
+  ngOnInit() {
+    this.session.sessionReady.subscribe( ready => {
+      if (!!ready) {
+        this.user = this.session.userProfile.getValue();
+        this.courseService.list({link: this.link}).then( res => {
+          this._course = res['course'];
+          this.setupForm(this._course);
+          this._ready = true;
+          if ( this.session.purchase ) {
+            this.session.purchase = false;
+            this.purchase();
+          }
+        });
+      }
+    });
+  }
+  get isEnrolled() {
+    return this.user && this.course && (this.user.checkEnrolled(this.course)
+      || this.user.courseOwner(this.course));
+  }
+  get course() {
+    return this._course;
+  }
+  get ready() {
+    return this._ready;
+  }
+  purchase( ) {
+    this.mRef = this.mSvc.show( PaymentComponent, {
+      initialState: {
+        pay: {
+          amount: this.course.cost,
+          id: this.course.id,
+          user: this.user,
+          product: this.course
+        }
+      }
+    });
+  }
 }

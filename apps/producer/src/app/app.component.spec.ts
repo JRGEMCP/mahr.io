@@ -1,31 +1,39 @@
-import { TestBed, async } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { AppComponent } from './app.component';
+import {PopoverModule} from "ngx-bootstrap";
+import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {BrowserModule} from "@angular/platform-browser";
+import {SharedModule} from "m8io-shared";
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent]
-    }).compileComponents();
+      declarations: [ AppComponent ],
+      imports: [
+        PopoverModule.forRoot(),
+        ReactiveFormsModule,
+        HttpClientTestingModule,
+        BrowserModule,
+        SharedModule,
+        RouterTestingModule
+      ]
+    })
+      .compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'producer'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('producer');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      'Welcome to producer!'
-    );
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });

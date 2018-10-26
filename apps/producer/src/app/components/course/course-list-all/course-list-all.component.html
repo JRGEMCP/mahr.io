@@ -1,0 +1,28 @@
+<div *ngFor="let entity of entities" class="api d-flex border-bottom pb-3 pt-3">
+  <div class="metadata mr-auto">
+    <div class="favorite mt-2 mr-2" *ngIf="entity.thumb">
+      <img [src]="entity.thumb" />
+    </div>
+    <div class="main" [ngClass]="{'active': !entity.thumb}">
+      <div class="top">
+        <a class="name" (click)="entity.cacheEntity = entity;" [routerLink]="['/courses/', entity.link]">
+          {{ entity.title }}
+        </a>
+      </div>
+      <div class="bottom">
+        <span>{{entity.deck}}</span>
+      </div>
+      <div *ngIf="entity?.tags && entity.tags.length">
+        <span *ngFor="let tag of entity.tags" class="badge badge-primary badge-pill m-1">{{tag}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="delete-button ml-1 text-right" style="min-width: 85px;">
+    <button  class="btn btn-success btn-block" (click)="purchase( entity )"
+             *ngIf="user && user.courses.indexOf(entity._id) === -1 && entity.creator._id !== user.id">
+      {{entity.cost ? '$'+entity.cost : 'Free'}}
+    </button>
+    <span class="small">{{entity.created | date:'MMM yyyy'}}</span>
+  </div>
+</div>

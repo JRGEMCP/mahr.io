@@ -1,0 +1,6 @@
+<input
+  [(ngModel)]="entity"
+  [typeahead]="observableEntities"
+  [typeaheadItemTemplate]="selectTitle"
+  placeholder="Typeahead inside a form"
+  class="form-control">

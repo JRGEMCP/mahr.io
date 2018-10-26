@@ -1,0 +1,68 @@
+<form [formGroup]="module.form">
+
+  <h3 class="main-header">Module Form</h3>
+
+  <div class="section mb-5">
+    <div class="section-content border p-4 mt-4 rounded">
+      <!-- name -->
+      <ng-template #namePopover>
+        Title
+      </ng-template>
+
+
+      <div class="form-group">
+        <label class="form-style" for="title">Title</label>
+        <!--<dxin-valid-field *ngIf="api.isNameValid || api.isNameTouched"-->
+        <!--[valid]="api.isNameValid && api.editing['name'] !== 'error'"></dxin-valid-field>-->
+        <input id="title" name="title" placeholder="Title" formControlName="title" popoverTitle="Title"
+               [popover]="namePopover" placement="right" container="body" [outsideClick]="true"
+               autocomplete="off" class="form-control" (blur)="fieldBlur('title')"  />
+        <!--<small class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+        <div class="subtext">
+          <small class="error" *ngIf="module.titleRequired">Title Required</small>
+          <!--<small class="error" *ngIf="api.nameHasSpecialCharsError">No Special Characters Allowed</small>-->
+          <small class="success" *ngIf="module.editing['title']">{{ module.editing['title'] }}</small>
+        </div>
+      </div>
+
+      <!-- description -->
+      <ng-template #descriptionPopover>
+        A short, dictionary-like description of the Tutorial.
+      </ng-template>
+      <div class="form-group">
+        <label class="form-style" for="description">Deck</label>
+        <!--<dxin-valid-field *ngIf="api?.isDescriptionValid || api?.isDescriptionTouched"-->
+        <!--[valid]="api.isDescriptionValid"></dxin-valid-field>-->
+        <textarea id="description" name="deck" rows="6" placeholder="Deck"
+                  formControlName="deck" (blur)="fieldBlur('deck')"
+                  popoverTitle="Deck"
+                  [popover]="descriptionPopover"
+                  placement="right"
+                  container="body"
+                  [outsideClick]="true" class="form-control"></textarea>
+        <!--<dxin-characters-count class="chars-left" min="1" max="350" [property]="api?.description" invalidsuffix="characters remaining" suffix="Maximum characters reached"></dxin-characters-count>-->
+        <div class="subtext">
+          <small class="error" *ngIf="module.deckRequired">Deck Required</small>
+          <small class="success" *ngIf="module.editing['deck']">{{ module.editing['deck'] }}</small>
+        </div>
+
+      </div>
+
+      <ng-template #linkPopover>
+        A unique link coinciding with the title. For example, &ldquo; Air Sensor Data Pipeline &rdquo; => air-sensor-data-pipeline
+      </ng-template>
+      <div class="form-group">
+        <label class="form-style" for="link">URL Path</label>
+        <!--<dxin-valid-field *ngIf="api.isNameValid || api.isNameTouched"-->
+        <!--[valid]="api.isNameValid && api.editing['name'] !== 'error'"></dxin-valid-field>-->
+        <input id="link" name="link" placeholder="Link" formControlName="link" popoverTitle="Link"
+               [popover]="linkPopover" placement="right" container="body" [outsideClick]="true"
+               autocomplete="off" class="form-control" (blur)="fieldBlur('link')"/>
+        <div class="subtext">
+          <small class="error" *ngIf="module.linkRequired">URL Path Required</small>
+          <small class="success" *ngIf="module.editing['link']">{{ module.editing['link'] }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,168 @@
+<form [formGroup]="entity.course">
+
+  <h3 class="main-header">Planning</h3>
+
+  <div class="section mb-4">
+
+    <div class="section-header">
+      <span class="float-right">All Fields Required</span>
+      <h5>Course Identification</h5>
+    </div>
+
+    <div class="section-header">
+        <span class="guidance">
+          TBD...
+        </span>
+    </div>
+
+    <div class="section-content border p-4 mt-2 rounded">
+      <!-- name -->
+      <ng-template #namePopover>
+        blah blah blah
+      </ng-template>
+
+
+      <div class="form-group">
+        <label class="form-style" for="title">Title</label>
+        <!--<dxin-valid-field *ngIf="api.isNameValid || api.isNameTouched"-->
+        <!--[valid]="api.isNameValid && api.editing['name'] !== 'error'"></dxin-valid-field>-->
+        <input id="title" name="title" placeholder="Title" formControlName="title" popoverTitle="Title"
+               [popover]="namePopover" placement="right" container="body" [outsideClick]="true"
+               autocomplete="off" class="form-control" (blur)="fieldBlur('title')"  />
+        <!--<small class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+        <div class="subtext">
+          <small class="error" *ngIf="entity.titleRequired">Title Required</small>
+          <!--<small class="error" *ngIf="api.nameHasSpecialCharsError">No Special Characters Allowed</small>-->
+          <small class="success" *ngIf="entity.editing['title']">{{ entity.editing['title'] }}</small>
+        </div>
+      </div>
+
+      <!-- description -->
+      <ng-template #descriptionPopover>
+        desc...
+      </ng-template>
+      <div class="form-group">
+        <label class="form-style" for="description">Deck</label>
+        <!--<dxin-valid-field *ngIf="api?.isDescriptionValid || api?.isDescriptionTouched"-->
+        <!--[valid]="api.isDescriptionValid"></dxin-valid-field>-->
+        <textarea id="description" name="deck" rows="6" placeholder="Deck"
+                  formControlName="deck" (blur)="fieldBlur('deck')"
+                  popoverTitle="Deck"
+                  [popover]="descriptionPopover"
+                  placement="right"
+                  container="body"
+                  [outsideClick]="true" class="form-control"></textarea>
+        <!--<dxin-characters-count class="chars-left" min="1" max="350" [property]="api?.description" invalidsuffix="characters remaining" suffix="Maximum characters reached"></dxin-characters-count>-->
+        <div class="subtext">
+          <small class="error" *ngIf="entity.deckRequired">Deck Required</small>
+          <small class="success" *ngIf="entity.editing['deck']">{{ entity.editing['deck'] }}</small>
+        </div>
+
+      </div>
+
+      <ng-template #urlPopover>
+        url...
+      </ng-template>
+      <div class="form-group">
+        <label class="form-style" for="link">URL Path</label>
+        <!--<dxin-valid-field *ngIf="api.isNameValid || api.isNameTouched"-->
+        <!--[valid]="api.isNameValid && api.editing['name'] !== 'error'"></dxin-valid-field>-->
+        <input id="link" name="link" placeholder="Link" formControlName="link" popoverTitle="Link"
+               [popover]="urlPopover" placement="right" container="body" [outsideClick]="true"
+               autocomplete="off" class="form-control" (blur)="fieldBlur('link')"/>
+        <div class="subtext">
+          <small class="error" *ngIf="entity.linkRequired">URL Path Required</small>
+          <!--<small class="error" *ngIf="api.nameHasSpecialCharsError">No Special Characters Allowed</small>-->
+          <small class="success" *ngIf="entity.editing['link']">{{ entity.editing['link'] }}</small>        </div>
+      </div>
+
+      <ng-template #ownerPopover>
+        Owner
+      </ng-template>
+      <div class="form-group" *ngIf="!entity.isNew">
+        <label class="form-style" for="owner">Owner</label>
+        <input id="owner" name="owner" formControlName="owner" popoverTitle="Owner"
+               [popover]="ownerPopover" placement="right" container="body" [outsideClick]="true"
+               autocomplete="off" class="form-control" [readonly]="true" />
+      </div>
+
+      <ng-template #costPopover>
+        url...
+      </ng-template>
+      <div class="form-group">
+        <label class="form-style" for="cost">Cost</label>
+        <!--<dxin-valid-field *ngIf="api.isNameValid || api.isNameTouched"-->
+        <!--[valid]="api.isNameValid && api.editing['name'] !== 'error'"></dxin-valid-field>-->
+        <input id="cost" name="cost" placeholder="Cost" formControlName="cost" popoverTitle="Cost"
+               [popover]="costPopover" placement="right" container="body" [outsideClick]="true"
+               autocomplete="off" class="form-control" (blur)="fieldBlur('cost')"  />
+        <!--<small class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+        <!--<div class="subtext">-->
+          <!--<small class="error" *ngIf="entity.titleRequired">Title Required</small>-->
+          <!--&lt;!&ndash;<small class="error" *ngIf="api.nameHasSpecialCharsError">No Special Characters Allowed</small>&ndash;&gt;-->
+          <!--<small class="success" *ngIf="entity.editing['title']">{{ entity.editing['title'] }}</small>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+
+  <!-- TODO: Add Thumbnail Feature -->
+  <div class="section" *ngIf="false">
+
+    <div class="section-header">
+      <h5>Image</h5>
+    </div>
+
+    <div class="section-header">
+      Add your own image to identify the course.
+    </div>
+
+    <ng-template #thumbPopover>
+      Enter a url for image.
+    </ng-template>
+    <div class="section-content border p-4 mt-4 rounded">
+
+      <div class="form-group">
+        <label class="form-style" for="img">Thumbnail Image</label>
+        <input id="img" name="thumb" placeholder="Thumbnail Image URL" formControlName="thumb" popoverTitle="Thumbnail Image"
+               [popover]="thumbPopover" placement="right" container="body" [outsideClick]="true"
+               autocomplete="off" class="form-control" (blur)="fieldBlur('thumb')"/>
+      </div>
+
+      <div class="form-control">
+        <label>New</label>
+        <input type="file" (change)="handleFileSelect($event)" >
+        <img *ngIf="img" [src]="img" style="max-width: 100%;"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" *ngIf="!entity.isNew || entity.isEssentialsValid">
+
+    <div class="section-header">
+      <h5>Tags</h5>
+    </div>
+
+    <div class="section-header">
+      Guidance
+    </div>
+
+    <ng-template #tagsPopover>
+      tags...
+    </ng-template>
+    <div class="section-content border p-4 mt-2 rounded">
+      <m8io-tags formControlName="tags"
+                 (addChip)="fieldBlur('tags')" (removeChip)="fieldBlur('tags')"
+                 [canEdit]="true"
+                 name="tags" id="tags" placeholder="Add a new Tag"
+                 popoverTitle="Tags"
+                 [popover]="tagsPopover"
+                 placement="right"
+                 container="body"
+                 [outsideClick]="true"></m8io-tags>
+      <div class="subtext">
+        <small class="success" *ngIf="entity.editing['tags']">{{ entity.editing['tags'] }}</small>
+      </div>
+    </div>
+  </div>
+</form>

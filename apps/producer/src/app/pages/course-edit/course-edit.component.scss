@@ -1,0 +1,15 @@
+.favorite {
+  position: absolute;
+  width: 80px;
+  img {
+    text-align: center;
+    max-height: 50px;
+  }
+}
+.main {
+  margin-left: 90px;
+}
+
+.main.active {
+  margin-left: 0 !important;
+}

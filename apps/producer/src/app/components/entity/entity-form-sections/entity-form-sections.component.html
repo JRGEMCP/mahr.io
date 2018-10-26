@@ -1,0 +1,95 @@
+<div *ngFor="let section of sections; let idx = index;" class="mb-5" [ngClass]="{'to-be-deleted': section._id == this.toBeDeleted.id}">
+  <div *ngIf="i == idx; else viewSection">
+    <tabset [justified]="true">
+      <tab heading="Preview" [active]="act==0" (select)="act=0">
+        <markdown [data]="sectionEditWindow"></markdown>
+      </tab>
+      <tab heading="Rich Text Editor" [active]="section.type === 'editor'" *ngIf="section.type === 'editor'"
+           (select)="sectionEditWindow = textEditor;">
+        <quill-editor [style]="{height: '200px'}" (onEditorCreated)="setFocus($event)" [(ngModel)]="textEditor"
+                      (onContentChanged)="sectionEditWindow = textEditor;" [modules]="modules"></quill-editor>
+        <button class="btn btn-success" (click)="saveSection(idx, textEditor)" *ngIf="!add">Update</button>
+
+      </tab>
+      <tab heading="Markdown" [active]="section.type === 'markdown'"  *ngIf="section.type === 'markdown'"
+           (select)="sectionEditWindow = textArea;">
+        <textarea class="input-section btn-block" [(ngModel)]="textArea" (keyup)="sectionEditWindow = textArea;"></textarea>
+        <button class="btn btn-success" (click)="saveSection(idx, textArea)" *ngIf="!add">Update</button>
+
+      </tab>
+    </tabset>
+  </div>
+
+  <ng-template #viewSection>
+    <div class="section" [ngClass]="{'ql-snow': section.type == 'editor'}">
+      <div class="section-control">
+        <button class="btn btn-link" style="margin-top: -15px;" (click)="editSection( section, idx )">
+          <i class="fa fa-pencil"></i>
+          Edit
+        </button>
+        <button class="btn btn-link float-right mr-3" style="margin-top: -15px;" (click)="removeSection( section, idx ); lgModal.show()" *ngIf="add">
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
+      <markdown [data]="section.body" [ngClass]="{'ql-editor': section.type == 'editor'}"></markdown>
+    </div>
+  </ng-template>
+</div>
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" (onHidden)="decline($event)"
+     role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Confirm Deletion</h4>
+        <button type="button" class="close pull-right" (click)="decline(lgModal)" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="lead">
+          <markdown [data]="toBeDeleted.name"></markdown>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="confirm(lgModal)" >Yes</button>
+        <button type="button" class="btn btn-primary" (click)="decline(lgModal)" >No</button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Confirm Deletion?</p>
+    <p class="lead">
+      <markdown [data]="toBeDeleted.name"></markdown>
+    </p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+  </div>
+</ng-template>
+
+<hr/>
+
+<div [hidden]="i !== -1">
+
+  <h4>
+    Add Section
+  </h4>
+
+  <tabset [justified]="true">
+    <tab heading="Preview">
+      <div class="input-section p-3 border rounded" style="border-top: none !important; ">
+        <markdown [data]="sectionWindow"></markdown>
+      </div>
+    </tab>
+    <tab heading="Rich Text Editor" [active]="true" (select)="toggle('editor'); sectionWindow = textEditor;" *ngIf="env.editor == 'quill'">
+      <quill-editor [style]="{height: '200px'}" (onEditorCreated)="setFocus($event)" [(ngModel)]="textEditor"
+                    [modules]="modules" (onContentChanged)="sectionWindow = textEditor;"></quill-editor>
+    </tab>
+    <tab heading="Markdown" [active]="true" (select)="toggle('markdown'); sectionWindow = textArea;" *ngIf="env.editor == 'markdown'">
+      <textarea class="input-section btn-block border p-3" [(ngModel)]="textArea" (keyup)="sectionWindow = textArea;"></textarea>
+    </tab>
+  </tabset>
+  <button class="btn btn-primary mt-2" (click)="addSection( sectionWindow )">Add</button>
+</div>

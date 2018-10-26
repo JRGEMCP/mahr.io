@@ -1,0 +1,26 @@
+.delete-button {
+  button {
+    display: none;
+  }
+  &.disabled {
+    button {
+      display: block;
+      position: absolute;
+      width: 20px;
+      height: 28px;
+      padding: 0;
+      background: inherit;
+      border: none;
+    }
+    fill: #A5ADB4 !important;
+    svg {
+      pointer-events: none;
+    }
+  }
+  dxin-trash-can-icon {
+    cursor: pointer;
+  }
+  dxin-trash-can-icon:hover {
+    fill: #0477a3;;
+  }
+}

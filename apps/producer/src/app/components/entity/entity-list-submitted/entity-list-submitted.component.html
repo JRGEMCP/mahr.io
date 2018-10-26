@@ -1,0 +1,34 @@
+
+<ng-container *ngIf="entities && entities.length; else noEntities">
+  <div *ngFor="let entity of entities" class="api d-flex border-bottom pb-3 pt-3">
+    <div class="metadata mr-auto">
+      <!--<div class="favorite float-left mt-2" *ngIf="user">-->
+        <!--<i class="fa fa-star-o"></i>-->
+      <!--</div>-->
+      <div>
+        <div class="top">
+          <div ><h5>{{ entity.title }} <small>(<i>{{entity.state}}</i>)</small></h5> </div>
+        </div>
+        <div class="bottom">
+          <span>{{entity.deck}}</span>
+        </div>
+        <div *ngIf="entity?.tags && entity.tags.length">
+          <span *ngFor="let tag of entity.tags" class="badge badge-primary badge-pill m-1">{{tag}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions mr-5">
+      <a [routerLink]="['/', link[1].toLowerCase(), entity._id, 'dx','review']" class="d-block">Review</a>
+    </div>
+
+
+    <div class="delete-button ml-5 mr-5">
+      <i class="fa fa-trash"></i>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #noEntities>
+  <p class="lead m-5 text-center">No Entities awaiting review.</p>
+</ng-template>

@@ -1,0 +1,136 @@
+<h3 class="main-header">Connect</h3>
+<h5>Course References</h5>
+
+<span class="guidance">
+  TBD...
+</span>
+
+<!-- ENTITY PREVIEW MODAL -->
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Entity Preview</h4>
+        <button type="button" class="close pull-right" (click)="decline(lgModal)" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="lead">
+          <m8io-entity-form-preview [entity]="viewEntity"></m8io-entity-form-preview>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="decline(lgModal)" >Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div bsModal #lgDeleteModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Confirm Deletion</h4>
+        <button type="button" class="close pull-right" (click)="decline(lgDeleteModal)" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <markdown [data]="section.body" *ngIf="section.body; else isEntity"></markdown>
+        <ng-template #isEntity>
+          {{section.name}}
+        </ng-template>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="confirm(lgDeleteModal)" >Yes</button>
+        <button type="button" class="btn btn-primary" (click)="decline(lgDeleteModal)" >No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<accordion closeOthers="true">
+  <accordion-group [heading]="module.title" *ngFor="let module of modules; let i = index">
+    <div *ngFor="let content of module.content; let j = index" style="clear: both" class="mt-5">
+      <!-- EDIT COURSE MODULES CONTENT -->
+      <div *ngIf="idx[0] == i && idx[1] == j; else viewContent">
+        <tabset [justified]="true">
+          <tab heading="Preview">
+            <markdown [data]="sectionWindow"></markdown>
+          </tab>
+          <tab heading="Rich Text Editor" [active]="content.data.type === 'editor'" *ngIf="content.data.type === 'editor'"
+               (select)="sectionWindow = textEditor;">
+            <quill-editor [style]="{height: '200px'}" [(ngModel)]="textEditor"
+                          (onContentChanged)="sectionWindow = textEditor;" [modules]="mods"></quill-editor>
+            <button class="btn btn-success" (click)="saveContent(content.data._id, textEditor)">Update</button>
+
+          </tab>
+          <tab heading="Markdown" [active]="content.data.type === 'markdown'"  *ngIf="content.data.type === 'markdown'"
+               (select)="sectionWindow = textArea;">
+            <textarea class="input-section btn-block" style="min-height: 200px;" [(ngModel)]="textArea" (keyup)="sectionWindow = textArea;"></textarea>
+            <button class="btn btn-success" (click)="saveContent(content.data._id, textArea)">Update</button>
+
+          </tab>
+        </tabset>
+      </div>
+
+      <!-- VIEW COURSE MODULE'S CONTENT -->
+      <ng-template #viewContent>
+        <div *ngIf="content.type == 'sections'; else contentView">
+          <div class="section-control" *ngIf="idx[0] == -1 && idx[1] == -1">
+            <button class="btn btn-link" style="margin-top: -15px;" (click)="editContent( content, i, j )">
+              <i class="fa fa-pencil"></i> Edit
+            </button>
+            <button class="btn btn-link float-right mr-3" style="margin-top: -15px;" (click)="removeContent( i, j, content.data ); lgDeleteModal.show()">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+          <markdown [data]="content.data.body"></markdown>
+        </div>
+
+        <ng-template #contentView>
+          <div class="section-control" *ngIf="idx[0] == -1 && idx[1] == -1">
+            <button class="btn btn-link float-right mr-3" style="margin-top: -15px;" (click)="removeContent( i, j, content.entity.title ); lgDeleteModal.show()">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+          <div><a (click)="viewEntity = content.entity; lgModal.show()">{{content.entity?.title}}</a></div>
+        </ng-template>
+      </ng-template>
+    </div>
+
+
+
+    <!-- ADD NEW CONTENT TO COURSE MODULE -->
+    <div style="width: 100%" *ngIf="idx[0] == -1 && idx[1] == -1" class="mt-5">
+      <tabset [justified]="true">
+        <tab heading="Entities">
+          <div class="input-section p-3 border rounded" style="border-top: none !important; " *ngIf="ready">
+            <input
+              [(ngModel)]="asyncModel"
+              [typeahead]="observableEntities"
+              (typeaheadOnSelect)="onSelect(module, $event)"
+              (typeaheadOnBlur)="onBlur(module, $event)"
+              typeaheadOptionField="title"
+              placeholder="Typeahead inside a form"
+              class="form-control">
+          </div>
+        </tab>
+        <tab heading="Rich Text Editor" (select)="toggle('editor')">
+          <quill-editor [style]="{height: '200px'}" [(ngModel)]="textEditor"
+                        [modules]="mods"></quill-editor>
+          <button class="btn btn-primary" (click)="addSection( module.id, textEditor )">Add</button>
+
+        </tab>
+        <tab heading="Markdown" (select)="toggle('markdown')">
+          <textarea class="input-section btn-block border p-3" [(ngModel)]="textArea"></textarea>
+          <button class="btn btn-primary" (click)="addSection( module.id, textArea )">Add</button>
+        </tab>
+      </tabset>
+    </div>
+  </accordion-group>
+</accordion>

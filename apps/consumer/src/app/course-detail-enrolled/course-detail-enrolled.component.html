@@ -1,0 +1,19 @@
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+
+        <m8io-milestone-panel [milestoneService]="milestones" (onMilestoneSelected)="handleClick($event)"
+                              [state]="section"></m8io-milestone-panel>
+
+      </div>
+      <div class="col-md-9">
+        <mahrio-course-detail-view [course]="course" [disabledContent]="true" *ngIf="!section"></mahrio-course-detail-view>
+
+        <div *ngIf="section">
+          <markdown [data]="sectionBody"></markdown>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

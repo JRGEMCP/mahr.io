@@ -1,0 +1,73 @@
+<h3 class="main-header">Define</h3>
+<h5>Course Modules</h5>
+
+<span class="guidance">
+  TBD...
+</span>
+<hr/>
+<div *ngFor="let module of modules; let idx = index;" class="mb-2" [ngClass]="{'to-be-deleted': module._id == this.toBeDeleted.id}">
+
+  <div *ngIf="i == idx; else viewSection">
+    <m8io-module-form [module]="module" (save)="saved($event)"></m8io-module-form>
+    <button class="btn btn-success" (click)="doneModule()" *ngIf="!add">Done</button>
+  </div>
+
+  <ng-template #viewSection>
+    <div class="section" [ngClass]="{'ql-snow': module.type == 'editor'}">
+      <div class="section-control float-right">
+        <button class="btn btn-link" style="margin-top: -15px;" (click)="editModule( module, idx )">
+          <i class="fa fa-pencil"></i>
+          Edit
+        </button>
+        <button class="btn btn-link float-right mr-3" style="margin-top: -15px;" (click)="removeModule( module, idx ); lgModal.show()" *ngIf="add">
+          <i class="fa fa-trash"></i>
+          Remove
+        </button>
+      </div>
+
+      {{module.title}}
+
+
+    </div>
+  </ng-template>
+</div>
+
+<div class="p-5"></div>
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Confirm Deletion</h4>
+        <button type="button" class="close pull-right" (click)="decline(lgModal)" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="lead">
+          {{toBeDeleted.name}}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="confirm(lgModal)" >Yes</button>
+        <button type="button" class="btn btn-primary" (click)="decline(lgModal)" >No</button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Confirm Deletion?</p>
+    <p class="lead">
+      <markdown [data]="toBeDeleted.name"></markdown>
+    </p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+  </div>
+</ng-template>
+
+<ng-container *ngIf="i == -1">
+  <m8io-module-form [module]="mdl" (save)="saved($event)"></m8io-module-form>
+  <button class="btn btn-primary" (click)="addModule( mdl )">Add</button>
+</ng-container>

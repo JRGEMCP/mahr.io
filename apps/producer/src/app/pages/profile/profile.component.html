@@ -1,0 +1,28 @@
+<div class="container">
+  <m8io-sub-nav [index]="5"></m8io-sub-nav>
+
+  <tabset [vertical]="true" type="pills">
+    <tab heading="General">
+      Email: {{user?.email}}
+    </tab>
+    <tab heading="Password">
+      <m8io-update-password></m8io-update-password>
+    </tab>
+    <tab heading="Account" id="tabAccount">
+      Please enter your email address to delete your account.
+      <br/>
+      <br/>
+      <form [formGroup]="u?.form">
+        <div class="form-group">
+          <label for="loginInputEmail1">Email address</label>
+          <input formControlName="email" type="text" class="form-control" id="loginInputEmail1" placeholder="Email">
+        </div>
+      </form>
+      <button [disabled]="!emailsEqual" class="btn btn-danger" (click)="removeAccount()" id="deleteAccountButton">
+        Delete Account
+      </button>
+    </tab>
+  </tabset>
+
+</div>
+

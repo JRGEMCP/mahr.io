@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <ng-container [ngSwitch]="type">
+        <m8io-user-new [course]="course" *ngSwitchCase="'register'" [course]="course"></m8io-user-new>
+        <m8io-recover-password *ngSwitchCase="'recover'"></m8io-recover-password>
+        <m8io-session-new [course]="course" *ngSwitchDefault></m8io-session-new>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div>
+  <m8io-sub-nav></m8io-sub-nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+
+        <m8io-milestone-panel [milestoneService]="milestoneService" (onMilestoneSelected)="edit = milestoneService.milestoneSelected($event, id)"
+                              [state]="course?.state" ></m8io-milestone-panel>
+
+      </div>
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-12" *ngIf="course">
+            <div [ngSwitch]="edit" class="row">
+
+              <div *ngSwitchCase="'edit'" class="col-9 p-5">
+                <m8io-course-form [entity]="course" *ngIf="course"></m8io-course-form>
+              </div>
+
+              <div *ngSwitchCase="'define'" class="col-12 p-5">
+                <m8io-course-form-modules [course]="course" (save)="saved($event)"></m8io-course-form-modules>
+              </div>
+
+              <div *ngSwitchCase="'connect'" class="col-12 p-5">
+                <m8io-course-form-connect [course]="course"></m8io-course-form-connect>
+                <div class="mt-5 text-right" *ngIf="course.state == 'completeDefine'">
+                  <button class="btn btn-primary" (click)="gotoPublish()">
+                    Go To Publish
+                  </button>
+                </div>
+              </div>
+
+              <div *ngSwitchCase="'challenge'" class="col-12 p-5">
+                <m8io-course-form-challenge [course]="course"></m8io-course-form-challenge>
+              </div>
+
+              <div *ngSwitchCase="'publish'" class="col-12 p-5">
+                <h3 class="main-header">Deploy</h3>
+                <h5>Course Preview</h5>
+                <span class="guidance">
+                  TBD...
+                </span>
+                <hr/>
+                <m8io-course-form-preview [course]="course"></m8io-course-form-preview>
+                <div class="m-5 row">
+                  <div class="col-6 offset-3">
+                    <button class="btn btn-success btn-block" (click)="submit('completePublish')">
+                      Publish
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
