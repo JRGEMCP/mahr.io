@@ -10,7 +10,7 @@
 
 <div class="container">
   <h3 class="font-weight-light mt-5 pt-5">{{entityName}}</h3>
-  <div class="scrolling-wrapper-flexbox" id="sensors-shelf" *ngIf="readyE; else loading;">
+  <div class="scrolling-wrapper-flexbox mb-5" id="sensors-shelf" *ngIf="readyE; else loading;">
     <ng-container *ngIf="articles && articles.length; else noData;">
       <div class="card mr-2" *ngFor="let article of articles" (click)="goTo(article.link)">
         <div class="card-body">

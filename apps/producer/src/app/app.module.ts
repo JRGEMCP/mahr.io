@@ -18,12 +18,7 @@ import { EntityListComponent } from './pages/entity-list/entity-list.component';
 import { EntityViewComponent } from './pages/entity-view/entity-view.component';
 import { EntityCreateComponent } from './pages/entity-create/entity-create.component';
 import { EntityEditComponent } from './pages/entity-edit/entity-edit.component';
-import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { PrivacyComponent } from './pages/privacy/privacy.component';
-import { TermsComponent } from './pages/terms/terms.component';
 /* COMPONENTS */
 import { EntityListAllComponent } from './components/entity/entity-list-all/entity-list-all.component';
 import { EntityListMineComponent } from './components/entity/entity-list-mine/entity-list-mine.component';
@@ -62,16 +57,18 @@ import { CourseTakeComponent } from './components/course/course-take/course-take
     /* MAIN */
     AppComponent,
     /* PAGES */
-    EntityListComponent, EntityViewComponent, EntityCreateComponent, EntityEditComponent, HomeComponent,
-    NotFoundComponent, ProfileComponent, DashboardComponent,
+    EntityListComponent, EntityViewComponent, EntityCreateComponent, EntityEditComponent,
+    NotFoundComponent,
     /* COMPONENTS */
     EntityFormComponent, EntityFormSectionsComponent,
-    EntityFormSubmitCaseComponent, SubNavComponent, EntityListAllComponent, EntityListMineComponent,
-    EntityListSubmittedComponent, EntityListAdminAllComponent,
+    EntityFormSubmitCaseComponent, SubNavComponent, EntityListAllComponent,
+    EntityListMineComponent, EntityListSubmittedComponent, EntityListAdminAllComponent,
     EntityFormPreviewComponent, CourseListComponent, CourseViewComponent, CourseEditComponent,
-    CourseCreateComponent, CourseListAllComponent, CourseFormPreviewComponent, CourseFormComponent,
-    CourseListMineComponent, CourseFormModulesComponent, SessionComponent, SubmitCaseComponent, RemoveEntityComponent, ModuleFormComponent,
-    EntityTypeaheadComponent, CourseFormConnectComponent, CourseFormChallengeComponent, PaymentComponent, CourseTakeComponent, PrivacyComponent, TermsComponent
+    CourseCreateComponent, CourseListAllComponent, CourseFormPreviewComponent,
+    CourseFormComponent, CourseListMineComponent, CourseFormModulesComponent,
+    SessionComponent, SubmitCaseComponent, RemoveEntityComponent, ModuleFormComponent,
+    EntityTypeaheadComponent, CourseFormConnectComponent, CourseFormChallengeComponent,
+    PaymentComponent, CourseTakeComponent
   ],
   imports: [
     BrowserModule,

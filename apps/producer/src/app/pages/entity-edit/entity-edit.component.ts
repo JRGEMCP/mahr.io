@@ -46,7 +46,7 @@ export class EntityEditComponent implements OnInit, OnDestroy {
       if (!!ready) {
         if (!this._art ) {
           this.entityService.list({id: this.id}).then( res => {
-            this._art = res[ this.entityService.type[1].toLowerCase() ][0];
+            this._art = res[ this.entityService.type[0].toLowerCase() ][0];
             this.setupForm(this._art);
           });
         }

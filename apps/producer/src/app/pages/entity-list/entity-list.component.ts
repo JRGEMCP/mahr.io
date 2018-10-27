@@ -31,30 +31,27 @@ export class EntityListComponent implements OnInit, OnDestroy {
     const entities = this.entity.cachedList;
     if (entities && entities.length) {
       this.filtered.entities = entities;
-      this._loadList();
+      this.setFilters( this.view || 'none' );
     }
   }
   _loadList() {
     this.pager.items = this.filtered.filterEntities();
     this.pager.setPage(0);
     this._readyEntities = true;
+    console.log( this.pager.items );
   }
 
   ngOnInit() {
     this._subs = this.session.userProfile.subscribe( profile => {
       this.user = profile;
-      if ( this.view) {
-        this.setFilters( this.view );
-      } else {
-        // show all tutorials
-      }
+      this.setFilters( null );
     });
     this.session.sessionReady.subscribe( ready => {
       if (!!ready ) {
         this._readySession = true;
         this.entity.list({}).then( ents => {
-          this.filtered.entities = ents[ this.entity.type[1].toLowerCase() ];
-          this._loadList();
+          this.filtered.entities = ents[ this.entity.type[0].toLowerCase() ];
+          this.setFilters( this.view || 'none' );
         });
       }
     });
@@ -68,18 +65,18 @@ export class EntityListComponent implements OnInit, OnDestroy {
         this.index = 2;
         this.filtered.filters = [ new NoFilter(), new SubmitSectionsFilter() ];
         break;
-      case 'my-'+this.entity.type[1].toLowerCase():
-        this.index = 1;
-        this.filtered.filters = [ new UserCreated(this.user.id) ];
-        break;
-      case 'all-'+this.entity.type[1].toLowerCase():
+      case 'admin':
         this.index = 0;
         this.filtered.filters = [
           new NoFilter()
         ];
         break;
       default:
-      // go to not found
+        this.index = 1;
+        this.filtered.filters = [ new UserCreated(this.user.id) ];
+    }
+    if( this.user && view ) {
+      this._loadList();
     }
   }
   removed( id ) {

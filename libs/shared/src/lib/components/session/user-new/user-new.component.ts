@@ -21,7 +21,7 @@ export class UserNewComponent {
   register() {
     this.session.register( this.user.payload ).then( user => {
       this.router.navigate(['/tutorials']);
-      if (this.course) {
+      if (this.course.link ) {
         this.router.navigate(['/', 'courses', this.course.link ], {queryParams: {purchase: true}});
       } else {
         this.router.navigate(['/tutorials']);
@@ -30,5 +30,11 @@ export class UserNewComponent {
       this.user = new Session( this.formBuilder );
       this.errors = ['We are having trouble registering. Please <a href="mailto:support@mahr.io">contact us</a>.'];
     });
+  }
+  openRights( type ) {
+    this.session.openRights( type );
+  }
+  setCourseId( val ) {
+    this.session.course = {id: val};
   }
 }

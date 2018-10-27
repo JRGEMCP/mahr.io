@@ -15,6 +15,7 @@ export class SessionComponent implements OnInit {
               private courseService: CourseService) {
     this.type = this.route.snapshot.params.any;
     this._course = this.session.course || {};
+    this.session.course = null;
   }
 
   ngOnInit() {

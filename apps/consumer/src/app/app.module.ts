@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from './app.component';
 import { NxModule } from '@nrwl/nx';
-import {SharedModule, SessionComponent, PaymentComponent} from "@mahrio/shared";
+import { SharedModule, SessionComponent, PaymentComponent} from "@mahrio/shared";
 import { ProducerModule } from "../../../producer/src/app/app.module";
+import { DashboardModule } from "../../../dashboard/src/app/app.module";
 
 declare var ace: any;
 import { AceEditorModule } from 'ng2-ace-editor';
@@ -58,7 +59,8 @@ const routes: Routes = [
     CarouselModule.forRoot(),
     TypeaheadModule.forRoot(),
     AccordionModule.forRoot(),
-    ProducerModule
+    ProducerModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -28,6 +28,6 @@
     </button>
   </div>
   <div class="text-center">
-    <p><a role="button" routerLink="/user/register" [queryParams]="{course: course?._id}">Create an Account</a></p>
+    <p><a role="button" (click)="setCourseId(course._id)" routerLink="/user/register" [queryParams]="{course: course?._id}">Create an Account</a></p>
   </div>
 </div>

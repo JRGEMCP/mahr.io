@@ -6,6 +6,7 @@ import { BehaviorSubject } from "rxjs";
 import { tap } from 'rxjs/operators';
 import { StripeService } from './stripe.service';
 import { UserModel } from '../models/user.model';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,15 @@ export class SessionService {
   private _sessionReady;
   private _course;
   private _purchase;
+  private _rights = null;
   private _env = {
     c: ['Asset', 'Assets']
   };
-  constructor( private store: LocalStorageService, private http: HttpClient, private log: LogService, private s: StripeService ) {
+  constructor( private store: LocalStorageService,
+               private http: HttpClient,
+               private log: LogService,
+               private s: StripeService,
+               private modal: BsModalService) {
     this._token = new BehaviorSubject(null);
     this._user = new BehaviorSubject(null);
     this._sessionReady = new BehaviorSubject(null);
@@ -49,6 +55,12 @@ export class SessionService {
   set course( val ) { this._course = val; }
   get course( ) { return this._course; }
 
+  set userRights( val ) {
+    this._rights = val;
+  }
+  openRights( type ) {
+    this.modal.show( this._rights[type], {class: 'modal-lg'} );
+  }
   getHeaders( token ) {
     return {
       headers: new HttpHeaders({

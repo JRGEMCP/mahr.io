@@ -20,7 +20,7 @@ export class SessionNewComponent {
   login() {
     this.errors = [];
     this.session.login( this.user.payload ).then( user => {
-      if ( this.course ) {
+      if ( this.course.link ) {
         // navigate to transactions of course
         this.router.navigate(['/', 'courses', this.course.link ]);
       } else {
@@ -30,5 +30,8 @@ export class SessionNewComponent {
       this.user = new Session( this.formBuilder );
       this.errors = ['We cannot find an account with that email address'];
     });
+  }
+  setCourseId( val ) {
+    this.session.course = {id: val};
   }
 }

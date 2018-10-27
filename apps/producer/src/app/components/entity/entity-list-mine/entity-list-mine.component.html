@@ -28,13 +28,13 @@
           <span>{{entity.deck}}</span>
         </div>
         <div *ngIf="entity?.tags && entity.tags.length">
-          <span *ngFor="let tag of entity.tags" class="badge badge-primary badge-pill m-1">{{tag}}</span>
+          <span *ngFor="let tag of entity.tags" class="badge badge-secondary badge-pill m-1">{{tag}}</span>
         </div>
       </div>
     </div>
 
     <div class="actions mr-5">
-      <a [routerLink]="['/', entityName, entities[i]._id, 'edit']" class="d-block">Edit</a>
+      <a [routerLink]="['/dashboard', asset, entities[i]._id, 'edit']" class="d-block">Edit</a>
     </div>
 
 

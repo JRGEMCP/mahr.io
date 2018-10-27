@@ -33,7 +33,7 @@
   <div class="text-center m-4">
     <small>
       By clicking Sign Up, you agree to our
-      <a routerLink="/s/terms">Terms</a> and <a routerLink="/s/privacy">Data</a> Policy.
+      <a href="javascript:void(0)" (click)="openRights('terms')">Terms</a> and <a href="javascript:void(0)" (click)="openRights('privacy')">Data</a> Policy.
     </small>
 
   </div>
@@ -50,5 +50,5 @@
     </button>
   </div>
 
-  <p class="text-center"><a role="button" routerLink="/session/new" [queryParams]="{course: course?._id}">Have Account?</a></p>
+  <p class="text-center"><a role="button" (click)="setCourseId(course?._id)" routerLink="/session/new" [queryParams]="{course: course?._id}">Have Account?</a></p>
 </div>

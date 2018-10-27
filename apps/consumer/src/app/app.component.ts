@@ -3,6 +3,8 @@ import { SessionService, RecoverPasswordUpdateComponent, ConfirmAccountComponent
 import { BsModalService } from 'ngx-bootstrap/modal';
 import * as env from '../environments/environment';
 import { ActivatedRoute } from "@angular/router";
+import { TermsComponent } from "./terms/terms.component";
+import { PrivacyComponent } from "./privacy/privacy.component";
 
 @Component({
   selector: 'mahrio-root',
@@ -38,6 +40,11 @@ export class AppComponent implements OnInit {
           this.session.purchase = true;
         }
       });
+
+    this.session.userRights = {
+      privacy: PrivacyComponent,
+      terms: TermsComponent
+    };
   }
   ngOnInit() {
 

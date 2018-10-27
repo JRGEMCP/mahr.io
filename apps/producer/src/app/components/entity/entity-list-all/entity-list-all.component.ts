@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { EntityService} from '@mahrio/shared';
+import { SessionService} from '@mahrio/shared';
 
 @Component({
   selector: 'm8io-entity-list-all',
@@ -9,8 +9,8 @@ export class EntityListAllComponent {
   @Input() entities;
   @Input() user;
   public entityName;
-  constructor(public entity: EntityService) {
-    this.entityName = this.entity.type[1];
+  constructor(public session: SessionService) {
+    this.entityName = this.session.env['c']['asset'][0].toLowerCase();
   }
 
 }

@@ -1,0 +1,17 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-white">
+    <li class="breadcrumb-item" [ngClass]="{'active': isDashboard}">
+      <a *ngIf="!isDashboard; else dashboard" routerLink="/dashboard">Dashboard</a>
+      <ng-template #dashboard>Dashboard</ng-template>
+    </li>
+
+    <li class="breadcrumb-item" [ngClass]="{'active': isEntity}" *ngIf="url.length > 1">
+      <a *ngIf="!isEntity; else assets" [routerLink]="['/dashboard', entities.toLowerCase()]">{{entities}}</a>
+      <ng-template #assets>{{entities}}</ng-template>
+    </li>
+
+    <li class="breadcrumb-item active" *ngIf="isAction">
+      {{action}}
+    </li>
+  </ol>
+</nav>

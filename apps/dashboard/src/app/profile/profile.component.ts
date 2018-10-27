@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
   }
 
   get emailsEqual() {
-    return this.user.email === this.u.form.value.email;
+    return this.user && this.user.email === this.u.form.value.email;
   }
   removeAccount() {
     this.userService.removeSelf().then( res => {

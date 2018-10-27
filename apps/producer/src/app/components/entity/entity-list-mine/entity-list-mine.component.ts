@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import { EntityService, EnvService } from '@mahrio/shared';
+import {EntityService, EnvService, SessionService} from '@mahrio/shared';
 
 @Component({
   selector: 'm8io-entity-list-mine',
@@ -9,15 +9,15 @@ import { EntityService, EnvService } from '@mahrio/shared';
 export class EntityListMineComponent {
   @Input() entities;
   @Input() user;
-  public entityName;
   @Output() removed = new EventEmitter();
+  public asset;
   public toBeDeleted = {
     e: null,
     id: null,
     index: null
   };
-  constructor(private env: EnvService, private entity: EntityService) {
-    this.entityName = this.env.entity[1].toLowerCase();
+  constructor(private session: SessionService, private entity: EntityService) {
+    this.asset = this.session.env['c']['asset'][0].toLowerCase();
   }
 
   remove( entity, index ) {
