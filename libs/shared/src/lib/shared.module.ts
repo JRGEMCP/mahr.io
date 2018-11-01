@@ -24,6 +24,7 @@ import { SessionComponent} from "./components/session/session.component";
 import { PaymentComponent } from './components/payment/payment.component';
 import { EntityFilterComponent} from './components/entity-filter/entity-filter.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { CourseBreadcrumbComponent } from './components/course-breadcrumb/course-breadcrumb.component';
 
 @NgModule({
   imports: [
@@ -51,13 +52,14 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     SessionComponent,
     PaymentComponent,
     EntityFilterComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    CourseBreadcrumbComponent
   ],
   exports: [HeaderNavComponent, MilestoneComponent, MilestonePanelComponent,
     MilestoneListComponent, ChipsComponent, RecoverPasswordComponent,
     RecoverPasswordUpdateComponent, SessionNewComponent, UserNewComponent, EntityFilterComponent,
     UpdatePasswordComponent, FooterComponent, AlertBannerComponent, ConfirmAccountComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent, CourseBreadcrumbComponent
   ]
 })
 export class SharedModule { }

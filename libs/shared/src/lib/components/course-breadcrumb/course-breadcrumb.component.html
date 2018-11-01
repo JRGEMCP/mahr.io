@@ -1,0 +1,14 @@
+<nav aria-label="breadcrumb">
+  <a class="float-right" *ngIf="isUserOwner" [routerLink]="['/dashboard/courses', course.id, 'edit']">
+    <i class="fa fa-cogs"></i> Edit Course
+  </a>
+  <ol class="breadcrumb bg-white">
+    <li class="breadcrumb-item" *ngIf="!isHome">
+      <a [routerLink]="['/courses', course.link]">Course</a>
+    </li>
+
+    <li class="breadcrumb-item active" *ngIf="isModule">
+      {{module}}
+    </li>
+  </ol>
+</nav>

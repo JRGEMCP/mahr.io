@@ -229,19 +229,19 @@ export class CourseMilestonesService {
     switch ($event) {
       case 'EssentialFields':
       case 'TagsAndMetadata':
-        this.router.navigate(['/', 'courses', id, 'edit']);
+        this.router.navigate(['/dashboard/courses', id, 'edit']);
         return 'edit';
       case 'Modules':
-        this.router.navigate(['/', 'courses', id, 'define']);
+        this.router.navigate(['/dashboard/courses', id, 'define']);
         return 'define';
       case 'Articles':
-        this.router.navigate(['/', 'courses', id, 'connect']);
+        this.router.navigate(['/dashboard/courses', id, 'connect']);
         return 'connect';
       case 'Challenge':
-        this.router.navigate(['/', 'courses', id, 'challenge']);
+        this.router.navigate(['/dashboard/courses', id, 'challenge']);
         return 'quizzes';
       case 'Publish':
-        this.router.navigate(['/', 'courses', id, 'publish']);
+        this.router.navigate(['/dashboard/courses', id, 'publish']);
         return 'publish';
     }
   }

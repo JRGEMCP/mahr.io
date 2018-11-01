@@ -6,11 +6,6 @@
   </div>
 
   <ng-template #courseTake>
-    <div class="text-center">
-      <a *ngIf="user.courseOwner(course)" [routerLink]="['/courses', course.id, 'edit']">
-        <i class="fa fa-cogs"></i>Edit
-      </a>
-    </div>
     <mahrio-course-detail-enrolled [course]="course"></mahrio-course-detail-enrolled>
   </ng-template>
 </div>

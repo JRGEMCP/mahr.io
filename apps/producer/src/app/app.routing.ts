@@ -1,15 +1,17 @@
 import { NgModule} from "@angular/core";
 import { Routes, RouterModule} from "@angular/router";
-import { EntityListComponent } from './pages/entity-list/entity-list.component';
-import { EntityCreateComponent } from './pages/entity-create/entity-create.component';
-import { EntityEditComponent } from './pages/entity-edit/entity-edit.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { CourseListComponent } from './pages/course-list/course-list.component';
-import { CourseEditComponent } from './pages/course-edit/course-edit.component';
-import { CourseCreateComponent } from './pages/course-create/course-create.component';
 import { ValidSessionGuard } from '@mahrio/shared';
 import * as env from '../environments/environment';
 const ent = env.environment['asset'][0].toLowerCase();
+
+import { EntityListComponent } from './pages/entity-list/entity-list.component';
+import { EntityCreateComponent } from './pages/entity-create/entity-create.component';
+import { EntityEditComponent } from './pages/entity-edit/entity-edit.component';
+
+import { CourseListComponent } from './pages/course-list/course-list.component';
+import { CourseCreateComponent } from './pages/course-create/course-create.component';
+import { CourseEditComponent } from './pages/course-edit/course-edit.component';
+
 const routes: Routes = [
   {path: `dashboard/${ent}/:id/:edit`, component: EntityEditComponent, canActivate: [ ValidSessionGuard ]},
   {path: `dashboard/${ent}/:id/dx/:edit`, component: EntityEditComponent,  data: {dx: true}, canActivate: [ ValidSessionGuard ]},
