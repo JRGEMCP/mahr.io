@@ -21,6 +21,9 @@ export class BreadcrumbComponent implements OnInit {
     if (this.url.length > 1 && this.url[1].path === 'profile') {
       this.entities = 'Profile';
     }
+    if (this.url.length > 1 && this.url[1].path === 'courses') {
+      this.entities = 'Courses';
+    }
   }
   get isDashboard() {
     return this.url.length === 1 && this.url[0].path === 'dashboard';
@@ -36,7 +39,8 @@ export class BreadcrumbComponent implements OnInit {
       case 4:
         return this.entity ? this.entity.title : '';
       default:
-        return 'New ' + this.session.env['c']['asset'][1];
+        const t = this.entities === 'Courses' ? 'Course' : this.session.env['c']['asset'][1];
+        return 'New ' + t;
     }
   }
 

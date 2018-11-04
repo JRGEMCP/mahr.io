@@ -54,4 +54,7 @@ export class CourseFormComponent {
   //   this.img = 'data:image/png;base64,' + btoa(binaryString);
   //   console.log(btoa(binaryString));
   // }
+  toggleCheck() {
+    this.update(['featured', !this.entity.payload['featured']]);
+  }
 }

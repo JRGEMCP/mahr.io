@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <mahrio-course-breadcrumb [course]="course"></mahrio-course-breadcrumb>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
 
-      <m8io-milestone-panel [milestoneService]="milestones" (onMilestoneSelected)="handleClick($event)"
+      <m8io-milestone-panel *ngIf="milestones" [milestoneService]="milestones" (onMilestoneSelected)="handleClick($event)"
                             [state]="section"></m8io-milestone-panel>
 
     </div>
-    <div class="col-md-9">
+    <div class="col-md-8">
       <mahrio-course-detail-view [course]="course" [disabledContent]="true" *ngIf="!section"></mahrio-course-detail-view>
 
       <div *ngIf="section">

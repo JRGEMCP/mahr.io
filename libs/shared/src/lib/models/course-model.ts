@@ -14,6 +14,7 @@ export class CourseModel {
   private _state;
   private _thumb;
   private _cost;
+  private _featured;
   public editing = {};
   constructor( fb, course ) {
     if ( course ) {
@@ -28,6 +29,7 @@ export class CourseModel {
       this._thumb = course.thumb;
       this._cost = course.cost;
       this._creator = course.creator;
+      this._featured = course.featured;
       this._modules = course.modules ? course.modules.map( mod => new ModuleFormModel(fb, mod)) : [];
     }
   }
@@ -43,6 +45,8 @@ export class CourseModel {
   get cost() { return this._cost; }
   set cost( val ) { this._cost = val; }
 
+  get featured() { return this._featured; }
+  set featured( val ) { this._featured = val; }
   get state() { return this._state; }
   set state( val ) { this._state = val; }
 

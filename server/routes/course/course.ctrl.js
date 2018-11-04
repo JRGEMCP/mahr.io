@@ -158,6 +158,7 @@ module.exports = {
       case 'link':
       case 'tags':
       case 'code':
+      case 'featured':
       case 'scenario':
       case 'design':
       case 'publish':

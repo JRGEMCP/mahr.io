@@ -8,7 +8,21 @@
           My Tutorials
         </div>
         <div class="card-body">
-          Coming soon.
+          <div *ngIf="ready; else load">
+            <div *ngIf="pager && pager.items.length; else noEntities">
+              <div *ngFor="let entity of pager.items">
+                <a [routerLink]="['/dashboard', asset[0].toLowerCase(),entity._id, 'edit']">
+                  {{entity.title}}
+                </a>
+              </div>
+            </div>
+            <ng-template #noEntities>
+              None.
+            </ng-template>
+          </div>
+          <ng-template #load>
+            <div class="loader"></div>
+          </ng-template>
         </div>
         <div class="card-footer">
           <a [routerLink]="['/dashboard', asset[0].toLowerCase()]">
@@ -27,6 +41,14 @@
         </div>
         <div class="card-body">
           Coming soon.
+        </div>
+        <div class="card-footer">
+          <a routerLink="/dashboard/courses">
+            List Courses
+          </a> |
+          <a routerLink="/dashboard/courses/new">
+            Create New
+          </a>
         </div>
       </div>
     </div>

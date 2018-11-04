@@ -14,7 +14,8 @@
     <ng-container *ngIf="articles && articles.length; else noData;">
       <div class="card mr-2" *ngFor="let article of articles" (click)="goTo(article.link)">
         <div class="card-body">
-          <div style="position: absolute; right: 5px; top: 5px;" *ngIf="article.creator._id === user?.id"><a [routerLink]="['/tutorials/', article._id, 'edit']"><i class="fa fa-cog"></i> </a> </div>
+          <div style="position: absolute; right: 5px; top: 5px;" *ngIf="article.creator._id === user?.id">
+            <a [routerLink]="['/dashboard/tutorials/', article._id, 'edit']"><i class="fa fa-cog"></i> </a> </div>
           <h5 class="card-title">{{article.title}}</h5>
           <p class="card-text">{{article.deck}}</p>
         </div>

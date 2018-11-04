@@ -137,6 +137,31 @@
     </div>
   </div>
 
+  <div class="section mb-4" *ngIf="!entity.isNew && entity.isEssentialsValid">
+
+    <div class="section-header">
+      <h5>Featured</h5>
+    </div>
+
+    <div class="section-header">
+      Do you want to add this course to the featured queue?
+    </div>
+
+    <ng-template #tagsPopover>
+      Use this feature to feature your course on the home page. See more about how we use your data in our usage section
+      of our privacy policy.
+    </ng-template>
+    <div class="section-content border p-4 mt-2 rounded">
+      <div class="form-check">
+        <input class="form-check-input" formControlName="featured" type="checkbox" value="" id="defaultCheck1" (click)="toggleCheck()">
+        <label class="form-check-label" for="defaultCheck1">
+          {{false ? '' : ''}}Featured
+        </label>
+      </div>
+      <small class="success" *ngIf="entity.editing['featured']">{{ entity.editing['featured'] }}</small>
+    </div>
+  </div>
+
   <div class="section" *ngIf="!entity.isNew || entity.isEssentialsValid">
 
     <div class="section-header">

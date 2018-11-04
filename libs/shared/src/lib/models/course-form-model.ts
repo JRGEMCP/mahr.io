@@ -13,7 +13,8 @@ export class CourseFormModel extends CourseModel {
       thumb: [this.thumb],
       cost: [this.cost],
       tags: [ this.tags],
-      owner: [ this.creator.email ]
+      owner: [ this.creator ? this.creator.email : '' ],
+      featured: [ this.featured ]
     });
   }
   get course() {

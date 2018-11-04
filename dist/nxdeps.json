@@ -1,0 +1,39 @@
+{
+  "dashboard-e2e": [
+    {
+      "projectName": "dashboard",
+      "type": "implicit"
+    }
+  ],
+  "producer-e2e": [
+    {
+      "projectName": "producer",
+      "type": "implicit"
+    }
+  ],
+  "consumer-e2e": [
+    {
+      "projectName": "consumer",
+      "type": "implicit"
+    }
+  ],
+  "dashboard": [
+    {
+      "projectName": "shared",
+      "type": "es6Import"
+    }
+  ],
+  "producer": [
+    {
+      "projectName": "shared",
+      "type": "es6Import"
+    }
+  ],
+  "consumer": [
+    {
+      "projectName": "shared",
+      "type": "es6Import"
+    }
+  ],
+  "shared": []
+}

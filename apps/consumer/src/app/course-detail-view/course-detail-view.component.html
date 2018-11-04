@@ -1,6 +1,6 @@
 <article *ngIf="ready">
   <div class="text-center">
-    <div *ngIf="!livePreview; else livePreview">
+    <div *ngIf="!livePreview; else lPreview">
       <h2>{{course.title}}</h2>
       <p class="lead">
         {{course.deck}}
@@ -10,7 +10,7 @@
         <span *ngFor="let tag of course.tags" class="badge badge-primary badge-pill m-1">{{tag}}</span>
       </div>
     </div>
-    <ng-template #livePreview>
+    <ng-template #lPreview>
       <div class="jumbotron">
         <h1 class="display-4">{{course.title}}</h1>
         <p class="lead">{{course.deck}}</p>

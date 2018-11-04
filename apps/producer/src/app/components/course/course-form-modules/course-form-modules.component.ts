@@ -151,7 +151,7 @@ export class CourseFormModulesComponent implements OnInit {
     });
   }
   addModule( module ) {
-    this.update(['module', module.payload], (res) => { debugger;
+    this.update(['module', module.payload], (res) => {
       this.course.modules.push( new ModuleFormModel(this.formBuilder, res['module']) );
       this.mdl = new ModuleFormModel(this.formBuilder);
     });
@@ -203,7 +203,7 @@ export class CourseFormModulesComponent implements OnInit {
       name: null
     };
   }
-  saved($val) {debugger;
+  saved($val) {
     this.save.emit($val);
   }
 }

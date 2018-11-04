@@ -61,10 +61,7 @@ export class CourseListComponent {
         ];
         break;
       default:
-        this.filtered.filters = [
-          new NoFilter(),
-          new PublishedFilter()
-        ];
+        this.filtered.filters = [new UserCreated(this.user.id)];
     }
   }
   setSearchString( str ) {

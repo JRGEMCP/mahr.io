@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: `dashboard/${ent}`, component: EntityListComponent, canActivate: [ ValidSessionGuard ]},        // LIST OF OWNERSHIP (AUTHORIZED / SELF ROLE)
   {path: `dashboard/admin/:type`, component: EntityListComponent, canActivate: [ ValidSessionGuard ]},  // LIST OF ALL (INSTRUCTOR ROLE)
   {path: `dashboard/dx/:type`, component: EntityListComponent, canActivate: [ ValidSessionGuard ]},    // LIST OF ALL IN USE CASE REVIEW (REVIEWER/INSTRUCTOR ROLE)
-  {path: `dashboard/courses/:type`, component: CourseListComponent, canActivate: [ ValidSessionGuard ]},        // LIST OF OWNERSHIP (AUTHORIZED / SELF ROLE)
+  {path: `dashboard/courses`, component: CourseListComponent, canActivate: [ ValidSessionGuard ]},        // LIST OF OWNERSHIP (AUTHORIZED / SELF ROLE)
   {path: `dashboard/courses/new`, component: CourseCreateComponent, canActivate: [ ValidSessionGuard ]},
   {path: `dashboard/courses/:id/:edit`, component: CourseEditComponent, canActivate: [ ValidSessionGuard ]},
 ];

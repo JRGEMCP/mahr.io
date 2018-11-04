@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4201",
+    "start": "ng serve",
     "server": "node server/index.js",
     "watch:consumer": "ng build --project consumer --watch",
     "watch:producer": "ng build --project producer --watch",

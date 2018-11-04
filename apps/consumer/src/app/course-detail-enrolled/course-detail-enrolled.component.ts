@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, OnChanges} from '@angular/core';
 import { CourseMilestonesModel } from '@mahrio/shared';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -7,7 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   templateUrl: './course-detail-enrolled.component.html',
   styleUrls: ['./course-detail-enrolled.component.scss']
 })
-export class CourseDetailEnrolledComponent implements OnInit {
+export class CourseDetailEnrolledComponent implements OnInit, OnChanges {
   @Input() course;
   public section;
   public milestones;
@@ -22,6 +22,10 @@ export class CourseDetailEnrolledComponent implements OnInit {
       this.sectionBody = this.findSection( this.section ).data.body;
 
     }
+  }
+  ngOnChanges(changes) {
+    this.milestones = new CourseMilestonesModel(this.router, this.course.link, this.course.modules);
+
   }
 
   findSection( secId ) {

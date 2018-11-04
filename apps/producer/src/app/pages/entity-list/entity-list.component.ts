@@ -23,7 +23,7 @@ export class EntityListComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute,
               private filtered: FilterService,
               private session: SessionService) {
-    this.entitiesName = this.entity.type[1];
+    this.entitiesName = this.entity.type[0];
     this.filtered.filters = [ new NoFilter(), new PublishedFilter() ];
 
     this.view = this.route.snapshot.params.type;
