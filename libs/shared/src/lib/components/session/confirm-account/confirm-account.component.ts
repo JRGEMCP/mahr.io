@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BsModalRef} from "ngx-bootstrap/modal/bs-modal-ref.service";
+import { BsModalRef} from "ngx-bootstrap/modal";
 
 @Component({
   selector: 'm8io-confirm-account',

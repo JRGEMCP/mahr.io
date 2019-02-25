@@ -5,12 +5,15 @@
   "MONGODB_URI": "mongodb://127.0.0.1:27017/mahrio",
   "CONTENT_TYPE": "tutorial",
   "REGRESSION_SUPPORT": true,
-  "USER_INTERFACES": [
-    {
-      "name": "consumer",
-      "route": ""
-    }
-  ],
+  "uis": [{
+    "name": "mahr-io-mobile",
+    "route": "/mobile",
+    "env": "www"
+  }, {
+    "name": "consumer",
+    "route": "",
+    "env": "development"
+  }],
   "WEB_DOMAIN": "http://127.0.0.1:8081/",
   "STRIPE_PRIVATE": "sk_test_",
   "STRIPE_PUBLIC": "pk_test_",

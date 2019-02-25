@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder } from "@angular/forms";
 import { SessionService} from "../../../services/session.service";
 import { Session } from '../../../models/session-modelo';
-import { BsModalRef} from "ngx-bootstrap/modal/bs-modal-ref.service";
+import { BsModalRef} from "ngx-bootstrap/modal";
 
 @Component({
   selector: 'm8io-recover-password-update',

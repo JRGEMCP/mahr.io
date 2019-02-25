@@ -1,5 +1,5 @@
 import { Component, Input, NgZone, OnInit} from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { SessionService} from '../../services/session.service';
 import { StripeService} from '../../services/stripe.service';
 import { TransactionService} from '../../services/transaction.service';

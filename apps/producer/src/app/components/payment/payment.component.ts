@@ -1,5 +1,5 @@
 import {Component, Input, NgZone, OnInit} from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import {SessionService, StripeService, TransactionService} from '@mahrio/shared';
 
 class PaymentModel {

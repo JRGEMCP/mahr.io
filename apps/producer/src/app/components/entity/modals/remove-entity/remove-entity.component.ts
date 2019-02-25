@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {EntityService} from '@mahrio/shared';
-import { BsModalRef} from "ngx-bootstrap/modal/bs-modal-ref.service";
+import { BsModalRef} from "ngx-bootstrap/modal";
 
 @Component({
   selector: 'm8io-remove-entity',

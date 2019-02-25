@@ -32,8 +32,13 @@ require('mahrio').runServer(config, __dirname ).then( function( server ) {
   require('./routes/module/module.routing')( server );
   require('./routes/user/user.routing')( server );
 
-  for( var i in config['USER_INTERFACES']){
-    var ui = config['USER_INTERFACES'][i];
-    require('./routes/static/static.routing')( server, __dirname, ui);
-  }
+  // for( var i in config['USER_INTERFACES']){
+  //   var ui = config['USER_INTERFACES'][i];
+  //   require('./routes/static/static.routing')( server, __dirname, ui);
+  // }
+  if( config['uis'] ) {
+    config['uis'].map( app => {
+      require('./routes/static/static.routing')( server, __dirname, app);
+    });
+}
 });

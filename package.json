@@ -1,6 +1,6 @@
 {
   "name": "mahr.io",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -46,9 +46,9 @@
     "core-js": "^2.5.4",
     "dynamoose": "^1.1.0",
     "font-awesome-sass": "^4.7.0",
-    "mahrio": "^1.5.3",
+    "mahrio": "git://github.com/JRGEMCP/mahrio.git#atlas-patch",
     "ng2-ace-editor": "^0.3.8",
-    "ngx-bootstrap": "^3.0.1",
+    "ngx-bootstrap": "^3.2.0",
     "ngx-localstorage": "^2.2.1",
     "ngx-markdown": "^7.0.0",
     "ngx-quill": "^4.0.0",
