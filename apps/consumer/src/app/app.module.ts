@@ -25,20 +25,21 @@ import { AssetDetailViewComponent } from './asset-detail-view/asset-detail-view.
 import { CourseInventoryAllComponent } from './course-inventory-all/course-inventory-all.component';
 import { CourseDetailViewComponent } from './course-detail-view/course-detail-view.component';
 import { CourseDetailEnrolledComponent } from './course-detail-enrolled/course-detail-enrolled.component';
-const dPath = env.environment.asset[0].toLowerCase();
+const dPath:string = Object.freeze( env.environment.asset[0].toLowerCase() );
 const routes: Routes = [
   {path: '', component: HomeComponent },
   {path: 'courses', component: CourseInventoryComponent},
   {path: 'courses/:link', component: CourseDetailComponent},
   {path: 'courses/:link/modules', component: CourseDetailComponent},
   {path: 'courses/:link/modules/:section', component: CourseDetailComponent},
-  {path: dPath, component: AssetInventoryComponent},
-  {path: dPath + '/:link', component: AssetDetailComponent},
+  {path: 'tutorials', component: AssetInventoryComponent},
+  {path: 'tutorials/:link', component: AssetDetailComponent},
   {path: 's/privacy', component: PrivacyComponent},
   {path: 's/terms', component: TermsComponent},
   {path: 'session/:any', component: SessionComponent},
   {path: 'user/:any', component: SessionComponent},
   {path: 'account/:any', component: SessionComponent},
+  {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -59,8 +60,8 @@ const routes: Routes = [
     CarouselModule.forRoot(),
     TypeaheadModule.forRoot(),
     AccordionModule.forRoot(),
-    ProducerModule,
-    DashboardModule
+    DashboardModule,
+    ProducerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

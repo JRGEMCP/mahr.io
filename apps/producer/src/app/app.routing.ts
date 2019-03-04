@@ -13,10 +13,10 @@ import { CourseCreateComponent } from './pages/course-create/course-create.compo
 import { CourseEditComponent } from './pages/course-edit/course-edit.component';
 
 const routes: Routes = [
-  {path: `dashboard/${ent}/:id/:edit`, component: EntityEditComponent, canActivate: [ ValidSessionGuard ]},
-  {path: `dashboard/${ent}/:id/dx/:edit`, component: EntityEditComponent,  data: {dx: true}, canActivate: [ ValidSessionGuard ]},
-  {path: `dashboard/${ent}/new`, component: EntityCreateComponent, canActivate: [ ValidSessionGuard ]},
-  {path: `dashboard/${ent}`, component: EntityListComponent, canActivate: [ ValidSessionGuard ]},        // LIST OF OWNERSHIP (AUTHORIZED / SELF ROLE)
+  {path: `dashboard/tutorials/:id/:edit`, component: EntityEditComponent, canActivate: [ ValidSessionGuard ]},
+  {path: `dashboard/tutorials/:id/dx/:edit`, component: EntityEditComponent,  data: {dx: true}, canActivate: [ ValidSessionGuard ]},
+  {path: `dashboard/tutorials/new`, component: EntityCreateComponent, canActivate: [ ValidSessionGuard ]},
+  {path: `dashboard/tutorials`, component: EntityListComponent, canActivate: [ ValidSessionGuard ]},        // LIST OF OWNERSHIP (AUTHORIZED / SELF ROLE)
   {path: `dashboard/admin/:type`, component: EntityListComponent, canActivate: [ ValidSessionGuard ]},  // LIST OF ALL (INSTRUCTOR ROLE)
   {path: `dashboard/dx/:type`, component: EntityListComponent, canActivate: [ ValidSessionGuard ]},    // LIST OF ALL IN USE CASE REVIEW (REVIEWER/INSTRUCTOR ROLE)
   {path: `dashboard/courses`, component: CourseListComponent, canActivate: [ ValidSessionGuard ]},        // LIST OF OWNERSHIP (AUTHORIZED / SELF ROLE)
