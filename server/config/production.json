@@ -11,7 +11,7 @@
   }, {
     "name": "consumer",
     "route": "",
-    "env": "development"
+    "env": "production"
   }],
   "WEB_DOMAIN": "https://mahr.io/",
   "STRIPE_PRIVATE": "sk_test_",

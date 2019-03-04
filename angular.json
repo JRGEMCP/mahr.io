@@ -40,7 +40,7 @@
           },
           "configurations": {
             "production": {
-              "outputPath": "server/public/ng/production",
+              "outputPath": "server/public/consumer/production",
               "fileReplacements": [
                 {
                   "replace": "apps/consumer/src/environments/environment.ts",
