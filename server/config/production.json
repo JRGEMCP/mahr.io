@@ -1,6 +1,5 @@
 {
   "NODE_URL": "0.0.0.0",
-  "PORT": "8081",
   "NODE_PUBLIC_PATH": "/public",
   "CONTENT_TYPE": "tutorial",
   "REGRESSION_SUPPORT": false,
