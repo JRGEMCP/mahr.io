@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
+    "prestart": "ng build --project consumer --prod",
     "ng": "ng",
-    "start": "ng serve",
-    "server": "node server/index.js",
+    "serve": "ng serve",
+    "start": "node server/index.js",
     "watch:consumer": "ng build --project consumer --watch",
     "watch:producer": "ng build --project producer --watch",
     "test": "ng test",

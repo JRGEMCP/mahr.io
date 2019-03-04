@@ -5,12 +5,15 @@
   "CONTENT_TYPE": "tutorial",
   "REGRESSION_SUPPORT": false,
   "MONGODB_URI": "",
-  "USER_INTERFACES": [
-    {
-      "name": "consumer",
-      "route": ""
-    }
-  ],
+  "uis": [{
+    "name": "mahr-io-mobile",
+    "route": "/mobile",
+    "env": "www"
+  }, {
+    "name": "consumer",
+    "route": "",
+    "env": "development"
+  }],
   "WEB_DOMAIN": "https://mahr.io/",
   "STRIPE_PRIVATE": "sk_test_",
   "STRIPE_PUBLIC": "pk_test_",

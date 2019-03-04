@@ -1,10 +1,10 @@
 {
-  "PORT": "8086",
   "NODE_URL": "0.0.0.0",
+  "PORT": "8086",
   "NODE_PUBLIC_PATH": "/public",
-  "MONGODB_URI": "mongodb://127.0.0.1:27017/mahrio",
   "CONTENT_TYPE": "tutorial",
   "REGRESSION_SUPPORT": true,
+  "MONGODB_URI": "mongodb://127.0.0.1:27017/mahrio",
   "uis": [{
     "name": "mahr-io-mobile",
     "route": "/mobile",
@@ -14,7 +14,7 @@
     "route": "",
     "env": "development"
   }],
-  "WEB_DOMAIN": "http://127.0.0.1:8081/",
+  "WEB_DOMAIN": "http://127.0.0.1:8086/",
   "STRIPE_PRIVATE": "sk_test_",
   "STRIPE_PUBLIC": "pk_test_",
   "MAILGUN_API_KEY": "key-",
