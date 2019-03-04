@@ -1,4 +1,7 @@
 {
+  "NODE_ENV": "production",
+  "NODE_URL": "",
+  "PORT": "",
   "NODE_PUBLIC_PATH": "/public",
   "CONTENT_TYPE": "tutorial",
   "REGRESSION_SUPPORT": false,
